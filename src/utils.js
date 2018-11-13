@@ -5,6 +5,7 @@ export const waitFor = milliseconds => {
 };
 export const isInOwnArea = (holeNumber, playerNumber) =>
   holeNumber >= (playerNumber - 1) * 8 && holeNumber < playerNumber * 8 - 1;
+
 export const getNextHoleNumber = holeNumber => (holeNumber + 1) % 16;
 
 export const generateCongklakInitialState = () => {

@@ -18,7 +18,7 @@ function CongklakHole(props) {
 CongklakHole.propTypes = {
   value: PropTypes.number.isRequired,
   disabled: PropTypes.bool,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   focused: PropTypes.bool
 };
 
