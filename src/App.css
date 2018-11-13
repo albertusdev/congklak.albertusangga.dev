@@ -42,7 +42,7 @@
 
 .congklak-hole-focused {
   color: red;
-  background-color: black;
+  background-image: radial-gradient(brown, brown, brown, black, black);
 }
 
 .congklak-board {
