@@ -95,52 +95,60 @@ function CongklakBoard(props) {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <h1>Current Turn: Player {turn}</h1>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row-reverse",
-          justifyContent: "center",
-          flex: 1
-        }}
-      >
-        {player1PlayableHoles.map((value, idx) => (
+      <div class={"congklak-board"}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row-reverse",
+            justifyContent: "center",
+            flex: 1
+          }}
+        >
+          {player1PlayableHoles.map((value, idx) => (
+            <CongklakHole
+              focused={focusedCongklakHoleNumber === idx}
+              value={value}
+              disabled={
+                seedsToBeDistributed !== -1 || turn !== 1 || value === 0
+              }
+              onClick={handlePlayerClick(idx)}
+            />
+          ))}
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            flex: 1,
+            margin: "0 -10%"
+          }}
+        >
           <CongklakHole
-            focused={focusedCongklakHoleNumber === idx}
-            value={value}
-            disabled={seedsToBeDistributed !== -1 || turn !== 1 || value === 0}
-            onClick={handlePlayerClick(idx)}
+            focused={focusedCongklakHoleNumber === 7}
+            value={player1ScoreHole}
+            disabled={seedsToBeDistributed !== -1 || turn !== 1}
           />
-        ))}
-      </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          flex: 1,
-          margin: "0 -10%"
-        }}
-      >
-        <CongklakHole
-          focused={focusedCongklakHoleNumber === 7}
-          value={player1ScoreHole}
-          disabled={seedsToBeDistributed !== -1 || turn !== 1}
-        />
-        {seedsToBeDistributed !== -1 && <div>{seedsToBeDistributed}</div>}
-        <CongklakHole
-          focused={focusedCongklakHoleNumber === 15}
-          value={player2ScoreHole}
-          disabled={seedsToBeDistributed !== -1 || turn !== 2}
-        />
-      </div>
-      <div style={{ display: "flex", justifyContent: "center", flex: 1 }}>
-        {player2PlayableHoles.map((value, idx) => (
+          {seedsToBeDistributed !== -1 && (
+            <div class={"inhand-counter"}>{seedsToBeDistributed}</div>
+          )}
           <CongklakHole
-            focused={focusedCongklakHoleNumber === idx + 8}
-            value={value}
-            disabled={seedsToBeDistributed !== -1 || turn !== 2 || value === 0}
-            onClick={handlePlayerClick(idx + 8)}
+            focused={focusedCongklakHoleNumber === 15}
+            value={player2ScoreHole}
+            disabled={seedsToBeDistributed !== -1 || turn !== 2}
           />
-        ))}
+        </div>
+        <div style={{ display: "flex", justifyContent: "center", flex: 1 }}>
+          {player2PlayableHoles.map((value, idx) => (
+            <CongklakHole
+              focused={focusedCongklakHoleNumber === idx + 8}
+              value={value}
+              disabled={
+                seedsToBeDistributed !== -1 || turn !== 2 || value === 0
+              }
+              onClick={handlePlayerClick(idx + 8)}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

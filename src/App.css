@@ -31,13 +31,30 @@
   padding: 0.75rem 1rem;
   outline: none;
   cursor: pointer;
+  background-image: radial-gradient(black, black, black, brown, brown);
+  color: white;
 }
 
 .congklak-hole:disabled {
   cursor: not-allowed;
+  color: white;
 }
 
 .congklak-hole-focused {
   color: red;
   background-color: black;
+}
+
+.congklak-board {
+  background-color: brown;
+  border: 2px solid black;
+  border-radius: 30%;
+  box-shadow: 10px 10px brown;
+  padding: 10px 50px;
+}
+
+.inhand-counter {
+  font-size: 30px;
+  color: white;
+  font-weight: bold;
 }
