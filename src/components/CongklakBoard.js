@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CongklakHole from "./CongklakHole";
 import {
   generateCongklakInitialState,
   PLAYER1_SCORE_HOLE_NUMBER,
   PLAYER2_SCORE_HOLE_NUMBER,
+  getNextTurn,
   getPlayer2PlayableHoles,
   getPlayer1PlayableHoles,
-  getPlayer1ScoreHole,
-  getPlayer2ScoreHole
+  isGameOver,
+  PLAYER2_PLAYABLE_HOLE_NUMBERS,
+  isPlayer1OutOfMove,
+  isPlayer2OutOfMove
 } from "../logic/congklakLogicUtils";
 import { simulateCongklakRotation } from "../logic/coreLogic";
+
+import { getEasyAiChoice } from "../ai/EasyAi";
 
 import "../App.css";
 
@@ -25,8 +30,9 @@ function CongklakBoard(props) {
     displayNumberOfSeedsToBeDistributed,
     setDisplayNumberOfSeedsToBeDistributed
   ] = useState(-1);
+  const [shouldCallAi, setShouldCallAi] = useState(true);
 
-  const handlePlayerClick = selectedHoleNumber => async () => {
+  const handlePlayerClick = (selectedHoleNumber, delay = props.delay) => () => {
     simulateCongklakRotation({
       congklakState,
       turn,
@@ -37,16 +43,46 @@ function CongklakBoard(props) {
       setDisplayNumberOfSeedsToBeDistributedFn: setDisplayNumberOfSeedsToBeDistributed,
       setTurnFn: setTurn,
 
-      delay: props.delay
+      delay
     });
   };
+
+  useEffect(() => {
+    if (turn === 1) {
+      if (isPlayer1OutOfMove(congklakState)) {
+        setTurn(getNextTurn(turn));
+      }
+    } else if (turn === 2) {
+      if (isPlayer2OutOfMove(congklakState)) {
+        setTurn(getNextTurn(turn));
+      } else if (shouldCallAi) {
+        setShouldCallAi(false);
+        simulateCongklakRotation({
+          congklakState,
+          turn,
+          selectedHoleNumber: getEasyAiChoice(congklakState),
+          setCongklakStateFn: setCongklakState,
+          setFocusedCongklakHoleNumberFn: setFocusedCongklakHoleNumber,
+          setDisplayNumberOfSeedsToBeDistributedFn: setDisplayNumberOfSeedsToBeDistributed,
+          setTurnFn: setTurn,
+          delay: props.delay
+        }).then(() => {
+          setShouldCallAi(true);
+        });
+      }
+    }
+  });
 
   if (!props.disabled) {
     return <div />;
   }
   return (
     <div>
-      <h1>Current Turn: Player {turn}</h1>
+      {focusedCongklakHoleNumber === -1 &&
+        isGameOver(congklakState) && <h1>Game Over!</h1>}
+      {!isGameOver(congklakState) && (
+        <h1>Current Turn: {turn === 1 ? "Player" : "AI"}</h1>
+      )}
       <div
         className="congklak-board"
         style={{ display: "flex", flexDirection: "column" }}

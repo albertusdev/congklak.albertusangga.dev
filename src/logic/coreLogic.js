@@ -25,7 +25,7 @@ export async function simulateCongklakRotation({
 }) {
   function setCongklakStateHelper(holeNumber, value) {
     congklakState[holeNumber] = value;
-    setCongklakStateFn(congklakState);
+    setCongklakStateFn([...congklakState]);
     setFocusedCongklakHoleNumberFn(holeNumber);
     return congklakState;
   }
@@ -70,7 +70,10 @@ export async function simulateCongklakRotation({
         setCongklakStateHelper(opposite, 0);
         await waitFor(delay);
 
-        setCongklakStateHelper(getOwnScoreHoleNumber(turn), take);
+        setCongklakStateHelper(
+          getOwnScoreHoleNumber(turn),
+          congklakState[getOwnScoreHoleNumber(turn)] + take
+        );
       }
     }
 
@@ -81,5 +84,7 @@ export async function simulateCongklakRotation({
   setFocusedCongklakHoleNumberFn(-1);
   if (currentHoleNumber !== getNextHoleNumber(getOwnScoreHoleNumber(turn))) {
     setTurnFn(getNextTurn(turn));
+    return 1;
   }
+  return 0;
 }

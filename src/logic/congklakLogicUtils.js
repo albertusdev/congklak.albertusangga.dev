@@ -1,5 +1,6 @@
 export const PLAYER1_SCORE_HOLE_NUMBER = 7;
 export const PLAYER2_SCORE_HOLE_NUMBER = 15;
+
 export const HOLE_NUMBER_TO_OPPOSITE_HOLE_NUMBER = {
   0: 14,
   1: 13,
@@ -17,6 +18,9 @@ export const HOLE_NUMBER_TO_OPPOSITE_HOLE_NUMBER = {
   13: 1,
   14: 0
 };
+
+export const PLAYER1_PLAYABLE_HOLE_NUMBERS = [0, 1, 2, 3, 4, 5, 6];
+export const PLAYER2_PLAYABLE_HOLE_NUMBERS = [8, 9, 10, 11, 12, 13, 14];
 
 export const isInOwnArea = (holeNumber, turn) =>
   holeNumber >= (turn - 1) * 8 && holeNumber < turn * 8 - 1;
@@ -45,3 +49,12 @@ export const getOppositeHoleNumber = holeNumber =>
   holeNumber === PLAYER2_SCORE_HOLE_NUMBER
     ? -1
     : HOLE_NUMBER_TO_OPPOSITE_HOLE_NUMBER[holeNumber];
+
+export const isPlayer1OutOfMove = congklakState =>
+  getPlayer1PlayableHoles(congklakState).filter(val => val > 0).length === 0;
+
+export const isPlayer2OutOfMove = congklakState =>
+  getPlayer2PlayableHoles(congklakState).filter(val => val > 0).length === 0;
+
+export const isGameOver = congklakState =>
+  isPlayer1OutOfMove(congklakState) && isPlayer2OutOfMove(congklakState);
