@@ -22,7 +22,16 @@ export default function App(props) {
   return (
     <div className="App">
       <h1>Congklak.AI</h1>
-      {isGameStarted && <input value={delay} onChange={handleSetDelay} />}
+      {!isGameStarted && (
+        <div>
+          <div>Enter Speed of Distribution in Number of Milliseconds</div>
+          <input
+            value={delay}
+            onChange={handleSetDelay}
+            style={{ width: "10%" }}
+          />
+        </div>
+      )}
       <CongklakBoard disabled={isGameStarted} delay={delay} />
       <div>
         <button className="start-button" onClick={handleClickStartButton}>
