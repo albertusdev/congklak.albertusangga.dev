@@ -91,10 +91,7 @@ function CongklakBoard(props) {
             disabled
           />
           {displayNumberOfSeedsToBeDistributed !== -1 && (
-            <div
-              className="inhand-counter"
-              style={{ fontWeight: "bold", fontSize: "1.5rem" }}
-            >
+            <div className="inhand-counter">
               {displayNumberOfSeedsToBeDistributed}
             </div>
           )}
