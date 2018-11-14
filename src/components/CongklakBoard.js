@@ -45,9 +45,12 @@ function CongklakBoard(props) {
     return <div />;
   }
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
+    <div>
       <h1>Current Turn: Player {turn}</h1>
-      <div className="congklak-board">
+      <div
+        className="congklak-board"
+        style={{ display: "flex", flexDirection: "column" }}
+      >
         <div
           style={{
             display: "flex",

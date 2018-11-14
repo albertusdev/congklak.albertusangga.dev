@@ -1,3 +1,15 @@
+@media screen and (min-width: 320px) and (max-width: 545px) and (orientation: landscape) {
+  html {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    width: 100vh;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+}
+
 #root {
   height: 100vh;
   width: 100%;
@@ -20,11 +32,46 @@
   margin-bottom: 1rem;
 }
 
+/*Cara Bermain*/
+.how-to {
+  width: 50%;
+  text-align: left;
+}
+.ht-clicker {
+  text-align: center;
+  background-color: #babdc1;
+  outline: none;
+  cursor: pointer;
+}
+
+.ht-hiddendiv {
+  padding: 1em;
+
+  margin: 1em;
+  color: black;
+  display: none;
+  background-color: #e0c0af;
+}
+
+.ht-clicker:focus + .ht-hiddendiv {
+  display: block;
+}
+/**/
+
 .start-button {
   margin-top: 1rem;
+  height: 30px;
+}
+
+@media screen and (orientation: lanscape) {
+  .start-button {
+    margin-top: 1rem;
+  }
 }
 
 .congklak-hole {
+  width: 47px;
+  height: 47px;
   border: none;
   border-radius: 50%;
   margin: 0.5rem;
