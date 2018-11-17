@@ -49,18 +49,26 @@ export default function App(props) {
           <ol>
             <li>
               Pemain memilih satu lubang pada sisi milik pemain, yaitu sisi
-              bawah. Tidak ada batasan waktu untuk ​player ​pada setiap ​turn
-              ​untuk memilih lubang
+              bawah. Tidak ada batasan waktu untuk ​pemain ​pada setiap ​giliran
+              ​untuk memilih lubang.
             </li>
             <li>
               Secara otomatis biji pada lubang tersebut akan dimasukkan
               satu-persatu ke setiap lubang kecil dan lubang besar di sisi kanan
-              papan (berlawanan jarum jam).
+              papan dengan pergerakan berlawanan arah jarum jam.
             </li>
             <li>
-              Jika biji terakhir jatuh pada sisi milik pemain (sisi bawah), maka
-              secara otomatis semua biji yang ada di lubang tersebut diambil dan
-              selanjutnya permainan akan mengulangi langkah (2).
+              Jika biji terakhir jatuh pada lubang di sisi milik pemain (sisi
+              bawah) dan lubang tersebut tidak kosong, maka secara otomatis
+              semua biji yang ada di lubang tersebut diambil dan selanjutnya
+              permainan akan mengulangi langkah (2).
+            </li>
+            <li>
+              Jika biji terakhir jatuh pada lubang di sisi pemain (sisi bawah)
+              dan lubang tersebut kosong, maka secara otomatis semua biji yang
+              ada pada lubang di seberangnya (sisi lawan) akan dimasukkan ke
+              lubang besar milik pemain (sisi kanan). Kemudian giliran pemain
+              telah selesai dan selanjutnya adalah giliran dari bot.
             </li>
             <li>
               Jika biji terakhir masuk pada lubang besar milik pemain (sisi
@@ -68,8 +76,9 @@ export default function App(props) {
               langkah (1).
             </li>
             <li>
-              Jika biji terakhir masuk pada sisi milik lawan, maka giliran
-              pemain selesai dan selanjutnya adalah giliran dari bot.
+              Jika biji terakhir masuk pada sisi milik lawan (sisi atas), maka
+              giliran pemain telah selesai dan selanjutnya adalah giliran dari
+              bot.
             </li>
             <li>
               Pemenang permainan adalah yang memiliki biji paling banyak pada

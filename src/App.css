@@ -46,7 +46,8 @@
 
 .ht-clicker {
   text-align: center;
-  background-color: #babdc1;
+  color: white;
+  background-color: #8b4513;
   outline: none;
   cursor: pointer;
 }
@@ -56,7 +57,7 @@
   padding: 1em;
   color: black;
   display: none;
-  background-color: #e0c0af;
+  background-color: #deb887;
 }
 .ht-hiddendiv > ol {
   padding-left: 20px;
@@ -87,7 +88,13 @@
   padding: 0.75rem 1rem;
   outline: none;
   cursor: pointer;
-  background-image: radial-gradient(black, black, black, brown, brown);
+  background-image: radial-gradient(
+    #231100,
+    #231100,
+    #231100,
+    #deb887,
+    #deb887
+  );
   color: white;
 }
 
@@ -102,11 +109,16 @@
 }
 
 .congklak-board {
-  background-color: brown;
-  border: 2px solid black;
-  border-radius: 30%;
-  box-shadow: 10px 10px brown;
+  background-image: url("https://i.imgur.com/V0MC22D.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  box-shadow: 10px 10px #351a00;
+  border: 1px solid #351a00;
   padding: 10px 50px;
+  border-top-left-radius: 200px 100%;
+  border-bottom-left-radius: 200px 100%;
+  border-top-right-radius: 200px 100%;
+  border-bottom-right-radius: 200px 100%;
 }
 
 .inhand-counter {
@@ -124,16 +136,27 @@
     font-size: 10px;
     outline: none;
     cursor: pointer;
-    background-image: radial-gradient(black, black, black, brown, brown);
+    background-image: radial-gradient(
+      #231100,
+      #231100,
+      #231100,
+      #deb887,
+      #deb887
+    );
     color: white;
   }
 
   .congklak-board {
-    background-color: brown;
-    border: 2px solid black;
-    border-radius: 30%;
-    box-shadow: 10px 10px brown;
+    background-image: url("https://i.imgur.com/V0MC22D.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    box-shadow: 10px 10px #351a00;
+    border: 1px solid #351a00;
     padding: 5px 30px;
+    border-top-left-radius: 100px 100%;
+    border-bottom-left-radius: 100px 100%;
+    border-top-right-radius: 100px 100%;
+    border-bottom-right-radius: 100px 100%;
   }
 
   .inhand-counter {
