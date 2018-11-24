@@ -88,3 +88,20 @@ export async function simulateCongklakRotation({
   }
   return 0;
 }
+
+export function getCongklakNextState(currentState, turn, selectedHoleNumber) {
+  const copyState = [...currentState];
+  simulateCongklakRotation({
+    congklakState: copyState,
+    turn: turn,
+    selectedHoleNumber: selectedHoleNumber,
+
+    setCongklakStateFn: () => {},
+    setFocusedCongklakHoleNumberFn: () => {},
+    setDisplayNumberOfSeedsToBeDistributedFn: () => {},
+    setTurnFn: () => {},
+
+    delay: 0
+  });
+  return copyState;
+}
