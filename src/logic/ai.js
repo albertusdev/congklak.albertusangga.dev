@@ -48,9 +48,7 @@ function evaluation(congklakState, turn) {
 async function minimax(state, depthLimit = null) {
   let maximum = MINUS_INFINITY;
   let choice = null;
-  let indexes = getPlayer2PlayableHoles(state);
-  for (let i = 0; i < indexes.length; i += 1) {
-    let holeNumber = indexes[i];
+  for (let holeNumber of getPlayer2PlayableHoles(state)) {
     let newState = await getCongklakNextState(state, 2, holeNumber);
     let actionResult = await getMin(newState, depthLimit);
     if (actionResult > maximum) {
