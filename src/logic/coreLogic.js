@@ -9,6 +9,8 @@ import {
   getOppositeHoleNumber
 } from "./congklakLogicUtils";
 
+import { getChoice } from "./ai";
+
 import { waitFor } from "../utils";
 
 export async function simulateCongklakRotation({

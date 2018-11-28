@@ -16,6 +16,8 @@ import { simulateCongklakRotation } from "../logic/coreLogic";
 
 import { getEasyAiChoice } from "../ai/EasyAi";
 
+import { getChoice } from "../logic/ai";
+
 import "../App.css";
 
 function CongklakBoard(props) {
@@ -57,10 +59,13 @@ function CongklakBoard(props) {
         setTurn(getNextTurn(turn));
       } else if (shouldCallAi) {
         setShouldCallAi(false);
+
+        const selectedHoleNumber = getChoice(congklakState, null);
+
         simulateCongklakRotation({
           congklakState,
           turn,
-          selectedHoleNumber: getEasyAiChoice(congklakState),
+          selectedHoleNumber,
           setCongklakStateFn: setCongklakState,
           setFocusedCongklakHoleNumberFn: setFocusedCongklakHoleNumber,
           setDisplayNumberOfSeedsToBeDistributedFn: setDisplayNumberOfSeedsToBeDistributed,
