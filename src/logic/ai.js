@@ -44,14 +44,14 @@ function evaluation(congklakState, turn) {
 }
 
 // Return the most optimum choice between hole number 8 - 14
-function minimax(state, depthLimit = null) {
+async function minimax(state, depthLimit = null) {
   let maximum = MINUS_INFINITY;
   let choice = null;
   let indexes = getPlayer2PlayableHoles(state);
   for (let i = 0; i < indexes.length; i += 1) {
     let holeNumber = indexes[i];
-    let newState = getCongklakNextState(state, 2, holeNumber);
-    let actionResult = getMin(newState, depthLimit);
+    let newState = await getCongklakNextState(state, 2, holeNumber);
+    let actionResult = await getMin(newState, depthLimit);
     if (actionResult > maximum) {
       maximum = actionResult;
       choice = holeNumber;
@@ -60,14 +60,14 @@ function minimax(state, depthLimit = null) {
   return choice;
 }
 
-function getMin(
+async function getMin(
   state,
   depthLimit,
   alpha = MINUS_INFINITY,
   beta = PLUS_INFINITY
 ) {}
 
-function getMax(
+async function getMax(
   state,
   depthLimit,
   alpha = MINUS_INFINITY,
