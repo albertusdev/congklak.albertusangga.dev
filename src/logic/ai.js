@@ -3,6 +3,7 @@ import {
   getOwnScoreHoleNumber,
   isPlayer2OutOfMove,
   isPlayer1OutOfMove,
+  getPlayer1PlayableHoles,
   getPlayer2PlayableHoles
 } from "../logic/congklakLogicUtils";
 import { getCongklakNextState } from "./coreLogic";
@@ -65,7 +66,25 @@ async function getMin(
   depthLimit,
   alpha = MINUS_INFINITY,
   beta = PLUS_INFINITY
-) {}
+) {
+  if (terminalTest(state, 1)) {
+    return utility(state, 1);
+  }
+  let v = PLUS_INFINITY;
+  let choice = null;
+  for (let holeNumber of getPlayer1PlayableHoles(state)) {
+    if (state[holeNumber] > 0) {
+      let nextState = await getCongklakNextState(state, 1, holeNumber);
+      v = Math.min(v, getMax(nextState, depthLimit - 1, alpha, beta));
+      if (v <= alpha) {
+        choice = holeNumber;
+        return v;
+      }
+      beta = Math.min(beta, v);
+    }
+    return v;
+  }
+}
 
 async function getMax(
   state,
