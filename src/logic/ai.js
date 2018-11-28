@@ -1,4 +1,14 @@
-import { PLAYER2_PLAYABLE_HOLE_NUMBERS } from "../logic/congklakLogicUtils";
+import {
+  PLAYER2_PLAYABLE_HOLE_NUMBERS,
+  getOwnScoreHoleNumber,
+  isPlayer2OutOfMove,
+  isPlayer1OutOfMove,
+  getPlayer2PlayableHoles
+} from "../logic/congklakLogicUtils";
+import { getCongklakNextState } from "./coreLogic";
+
+const MINUS_INFINITY = -10000000;
+const PLUS_INFINITY = +10000000;
 
 export function getChoice(congklakState, difficulty) {
   return getRandomChoice(congklakState);
@@ -17,8 +27,43 @@ function getRandomChoice(congklakState) {
   return playableHoles[Math.floor(Math.random() * playableHoles.length)];
 }
 
-function minimax(state) {}
+function terminalTest(congklakState, turn) {
+  if (turn === 1) {
+    return isPlayer1OutOfMove(congklakState);
+  } else {
+    return isPlayer2OutOfMove(congklakState);
+  }
+}
 
-function getMin(state, alpha, beta, depthLimit) {}
+function utility(congklakState) {
+  return congklakState[getOwnScoreHoleNumber(congklakState)];
+}
 
-function getMax(state, alpha, beta, depthLimit) {}
+function evaluation(congklakState) {
+  return utility(congklakState);
+}
+
+function minimax(state) {
+  let maximum = MINUS_INFINITY;
+  let indexes = getPlayer2PlayableHoles(state);
+  for (let i = 0; i < indexes.length; i += 1) {
+    let holeNumber = indexes[i];
+    let newState = getCongklakNextState(congklakState, 2, holeNumber);
+    maximum = Math.max(maximum, getMin(newState, null));
+  }
+  return maximum;
+}
+
+function getMin(
+  state,
+  depthLimit,
+  alpha = MINUS_INFINITY,
+  beta = PLUS_INFINITY
+) {}
+
+function getMax(
+  state,
+  depthLimit,
+  alpha = MINUS_INFINITY,
+  beta = PLUS_INFINITY
+) {}
