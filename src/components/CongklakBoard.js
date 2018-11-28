@@ -92,6 +92,7 @@ function CongklakBoard(props) {
         style={{ display: "flex", flexDirection: "column" }}
       >
         <div
+          className="CongklakHole-player1"
           style={{
             display: "flex",
             flexDirection: "row-reverse",
@@ -125,17 +126,17 @@ function CongklakBoard(props) {
           }}
         >
           <CongklakHole
+            className="CongklakHole-score1"
             key={`congklak-hole-0`}
             focused={focusedCongklakHoleNumber === PLAYER1_SCORE_HOLE_NUMBER}
             value={congklakState[PLAYER1_SCORE_HOLE_NUMBER]}
             disabled
           />
           {displayNumberOfSeedsToBeDistributed !== -1 && (
-            <div className="inhand-counter">
-              {displayNumberOfSeedsToBeDistributed}
-            </div>
+            <div>{displayNumberOfSeedsToBeDistributed}</div>
           )}
           <CongklakHole
+            className="CongklakHole-score2"
             key={`congklak-hole-8`}
             focused={focusedCongklakHoleNumber === PLAYER2_SCORE_HOLE_NUMBER}
             value={congklakState[PLAYER2_SCORE_HOLE_NUMBER]}
@@ -144,7 +145,10 @@ function CongklakBoard(props) {
         </div>
 
         {/* Player 2 Holes */}
-        <div style={{ display: "flex", justifyContent: "center", flex: 1 }}>
+        <div
+          className="CongklakHole-player2"
+          style={{ display: "flex", justifyContent: "center", flex: 1 }}
+        >
           {getPlayer2PlayableHoles(congklakState).map((value, idx) => (
             <CongklakHole
               key={`congklak-hole-${idx + 8}`}
