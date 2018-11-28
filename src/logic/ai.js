@@ -48,7 +48,7 @@ function minimax(state) {
   let indexes = getPlayer2PlayableHoles(state);
   for (let i = 0; i < indexes.length; i += 1) {
     let holeNumber = indexes[i];
-    let newState = getCongklakNextState(congklakState, 2, holeNumber);
+    let newState = getCongklakNextState(state, 2, holeNumber);
     maximum = Math.max(maximum, getMin(newState, null));
   }
   return maximum;
