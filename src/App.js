@@ -32,7 +32,7 @@ export default function App(props) {
 
   return (
     <div className="App">
-      <h1>Congklak.AI</h1>
+      <img src="https://i.imgur.com/dZa4gaQ.png" width="400" />
       {!isGameStarted && (
         <div>
           <div>Choose Speed</div>
