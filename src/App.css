@@ -6689,39 +6689,32 @@ textarea.materialize-textarea {
   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
     0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 }
-
 input[type="checkbox"]:checked:not(:disabled) ~ .lever:active::before,
 input[type="checkbox"]:checked:not(:disabled).tabbed:focus ~ .lever::before {
   transform: scale(2.4);
   background-color: rgba(121, 85, 72, 0.15);
 }
-
 input[type="checkbox"]:not(:disabled) ~ .lever:active:before,
 input[type="checkbox"]:not(:disabled).tabbed:focus ~ .lever::before {
   transform: scale(2.4);
   background-color: rgba(0, 0, 0, 0.08);
 }
-
 .switch input[type="checkbox"][disabled] + .lever {
   cursor: default;
   background-color: rgba(0, 0, 0, 0.12);
 }
-
 .switch label input[type="checkbox"][disabled] + .lever:after,
 .switch label input[type="checkbox"][disabled]:checked + .lever:after {
   background-color: #949494;
 }
-
 /* Select Field
    ========================================================================== */
 select {
   display: none;
 }
-
 select.browser-default {
   display: block;
 }
-
 select {
   background-color: rgba(255, 255, 255, 0.9);
   width: 100%;
@@ -6730,11 +6723,9 @@ select {
   border-radius: 2px;
   height: 3rem;
 }
-
 .select-label {
   position: absolute;
 }
-
 .select-wrapper {
   position: relative;
 }
@@ -6777,65 +6768,52 @@ select {
   top: -26px;
   font-size: 0.8rem;
 }
-
 select:disabled {
   color: rgba(0, 0, 0, 0.42);
 }
-
 .select-wrapper.disabled + label {
   color: rgba(0, 0, 0, 0.42);
 }
-
 .select-wrapper.disabled .caret {
   fill: rgba(0, 0, 0, 0.42);
 }
-
 .select-wrapper input.select-dropdown:disabled {
   color: rgba(0, 0, 0, 0.42);
   cursor: default;
   user-select: none;
 }
-
 .select-wrapper i {
   color: rgba(0, 0, 0, 0.3);
 }
-
 .select-dropdown li.disabled,
 .select-dropdown li.disabled > span,
 .select-dropdown li.optgroup {
   color: rgba(0, 0, 0, 0.3);
   background-color: transparent;
 }
-
 body.keyboard-focused .select-dropdown.dropdown-content li:focus {
   background-color: rgba(0, 0, 0, 0.08);
 }
-
 .select-dropdown.dropdown-content li:hover {
   background-color: rgba(0, 0, 0, 0.08);
 }
-
 .select-dropdown.dropdown-content li.selected {
   background-color: rgba(0, 0, 0, 0.03);
 }
-
 .prefix ~ .select-wrapper {
   margin-left: 3rem;
   width: 92%;
   width: calc(100% - 3rem);
 }
-
 .prefix ~ label {
   margin-left: 3rem;
 }
-
 .select-dropdown li img {
   height: 40px;
   width: 40px;
   margin: 5px 15px;
   float: right;
 }
-
 .select-dropdown li.optgroup {
   border-top: 1px solid #eee;
 }
@@ -6848,7 +6826,6 @@ body.keyboard-focused .select-dropdown.dropdown-content li:focus {
 .select-dropdown li.optgroup ~ li.optgroup-option {
   padding-left: 1rem;
 }
-
 /* File Input
    ========================================================================== */
 .file-field {
@@ -6888,18 +6865,15 @@ body.keyboard-focused .select-dropdown.dropdown-content li:focus {
 .file-field input[type="file"]::-webkit-file-upload-button {
   display: none;
 }
-
 /* Range
    ========================================================================== */
 .range-field {
   position: relative;
 }
-
 input[type="range"],
 input[type="range"] + .thumb {
   cursor: pointer;
 }
-
 input[type="range"] {
   position: relative;
   background-color: transparent;
@@ -6912,7 +6886,6 @@ input[type="range"] {
 input[type="range"]:focus {
   outline: none;
 }
-
 input[type="range"] + .thumb {
   position: absolute;
   top: 10px;
@@ -6943,17 +6916,14 @@ input[type="range"] + .thumb.active .value {
   margin-top: 8px;
   font-size: 10px;
 }
-
 input[type="range"] {
   -webkit-appearance: none;
 }
-
 input[type="range"]::-webkit-slider-runnable-track {
   height: 3px;
   background: #c2c0c2;
   border: none;
 }
-
 input[type="range"]::-webkit-slider-thumb {
   border: none;
   height: 14px;
@@ -6966,27 +6936,21 @@ input[type="range"]::-webkit-slider-thumb {
   transform-origin: 50% 50%;
   margin: -5px 0 0 0;
 }
-
 .keyboard-focused input[type="range"]:focus:not(.active)::-webkit-slider-thumb {
   box-shadow: 0 0 0 10px rgba(121, 85, 72, 0.26);
 }
-
 input[type="range"] {
-  /* fix for FF unable to apply focus style bug  */
-  border: 1px solid white;
-  /*required for proper track sizing in FF*/
+  /* fix for FF unable to apply focus style bug */
+  border: 1px solid white; /* required for proper track sizing in FF */
 }
-
 input[type="range"]::-moz-range-track {
   height: 3px;
   background: #c2c0c2;
   border: none;
 }
-
 input[type="range"]::-moz-focus-inner {
   border: 0;
 }
-
 input[type="range"]::-moz-range-thumb {
   border: none;
   height: 14px;
@@ -6996,33 +6960,27 @@ input[type="range"]::-moz-range-thumb {
   transition: box-shadow 0.3s;
   margin-top: -5px;
 }
-
 input[type="range"]:-moz-focusring {
   outline: 1px solid #fff;
   outline-offset: -1px;
 }
-
 .keyboard-focused input[type="range"]:focus:not(.active)::-moz-range-thumb {
   box-shadow: 0 0 0 10px rgba(121, 85, 72, 0.26);
 }
-
 input[type="range"]::-ms-track {
   height: 3px;
   background: transparent;
   border-color: transparent;
   border-width: 6px 0;
-  /*remove default tick marks*/
+  /* remove default tick marks */
   color: transparent;
 }
-
 input[type="range"]::-ms-fill-lower {
   background: #777;
 }
-
 input[type="range"]::-ms-fill-upper {
   background: #ddd;
 }
-
 input[type="range"]::-ms-thumb {
   border: none;
   height: 14px;
@@ -7031,22 +6989,18 @@ input[type="range"]::-ms-thumb {
   background: #795548;
   transition: box-shadow 0.3s;
 }
-
 .keyboard-focused input[type="range"]:focus:not(.active)::-ms-thumb {
   box-shadow: 0 0 0 10px rgba(121, 85, 72, 0.26);
 }
-
-/***************
+/* **************
     Nav List
-***************/
+************** */
 .table-of-contents.fixed {
   position: fixed;
 }
-
 .table-of-contents li {
   padding: 2px 0;
 }
-
 .table-of-contents a {
   display: inline-block;
   font-weight: 300;
@@ -7067,7 +7021,6 @@ input[type="range"]::-ms-thumb {
   padding-left: 14px;
   border-left: 2px solid #795548;
 }
-
 .sidenav {
   position: fixed;
   width: 300px;
@@ -7209,7 +7162,6 @@ input[type="range"]::-ms-thumb {
   padding-bottom: 16px;
   font-weight: 400;
 }
-
 .drag-target {
   height: 100%;
   width: 10px;
@@ -7220,7 +7172,6 @@ input[type="range"]::-ms-thumb {
 .drag-target.right-aligned {
   right: 0;
 }
-
 .sidenav.sidenav-fixed {
   left: 0;
   transform: translateX(0);
@@ -7230,7 +7181,6 @@ input[type="range"]::-ms-thumb {
   right: 0;
   left: auto;
 }
-
 @media only screen and (max-width: 992px) {
   .sidenav.sidenav-fixed {
     transform: translateX(-105%);
@@ -7245,7 +7195,6 @@ input[type="range"]::-ms-thumb {
     padding: 16px 16px 0;
   }
 }
-
 .sidenav .collapsible-body > ul:not(.collapsible) > li.active,
 .sidenav.sidenav-fixed .collapsible-body > ul:not(.collapsible) > li.active {
   background-color: #795548;
@@ -7254,11 +7203,9 @@ input[type="range"]::-ms-thumb {
 .sidenav.sidenav-fixed .collapsible-body > ul:not(.collapsible) > li.active a {
   color: #fff;
 }
-
 .sidenav .collapsible-body {
   padding: 0;
 }
-
 .sidenav-overlay {
   position: fixed;
   top: 0;
@@ -7270,8 +7217,6 @@ input[type="range"]::-ms-thumb {
   z-index: 997;
   display: none;
 }
-
-/*
     @license
     Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
     This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
@@ -7280,10 +7225,10 @@ input[type="range"]::-ms-thumb {
     Code distributed by Google as part of the polymer project is also
     subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
-/**************************/
+/**
+/* ************************ */
 /* STYLES FOR THE SPINNER */
-/**************************/
-/*
+/* ************************ */
  * Constants:
  *      STROKEWIDTH = 3px
  *      ARCSIZE     = 270 degrees (amount of circle the arc takes up)
@@ -7296,6 +7241,7 @@ input[type="range"]::-ms-thumb {
  *      CONTAINERWIDTH = 28px
  *      SHRINK_TIME = 400ms
  */
+.pr
 .preloader-wrapper {
   display: inline-block;
   position: relative;
@@ -7315,19 +7261,16 @@ input[type="range"]::-ms-thumb {
   -webkit-animation: container-rotate 1568ms linear infinite;
   animation: container-rotate 1568ms linear infinite;
 }
-
 @-webkit-keyframes container-rotate {
   to {
     -webkit-transform: rotate(360deg);
   }
 }
-
 @keyframes container-rotate {
   to {
     transform: rotate(360deg);
   }
 }
-
 .spinner-layer {
   position: absolute;
   width: 100%;
@@ -7335,28 +7278,23 @@ input[type="range"]::-ms-thumb {
   opacity: 0;
   border-color: #795548;
 }
-
 .spinner-blue,
 .spinner-blue-only {
   border-color: #4285f4;
 }
-
 .spinner-red,
 .spinner-red-only {
   border-color: #db4437;
 }
-
 .spinner-yellow,
 .spinner-yellow-only {
   border-color: #f4b400;
 }
-
 .spinner-green,
 .spinner-green-only {
   border-color: #0f9d58;
 }
-
-/**
+/* *
  * IMPORTANT NOTE ABOUT CSS ANIMATION PROPERTIES (keanulee):
  *
  * iOS Safari (tested on iOS 8.1) does not handle animation-delay very well - it doesn't
@@ -7367,8 +7305,7 @@ input[type="range"]::-ms-thumb {
  * We write out each animation in full (instead of separating animation-name,
  * animation-duration, etc.) because under the polyfill, Safari does not recognize those
  * specific properties properly, treats them as -webkit-animation, and overrides the
- * other animation rules. See https://github.com/Polymer/platform/issues/53.
- */
+ * other animation rules. See https://github.com/Polymer/platform/issues/53. */
 .active .spinner-layer.spinner-blue {
   /* durations: 4 * ARCTIME */
   -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1)
@@ -7378,7 +7315,6 @@ input[type="range"]::-ms-thumb {
       both,
     blue-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
 }
-
 .active .spinner-layer.spinner-red {
   /* durations: 4 * ARCTIME */
   -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1)
@@ -7388,7 +7324,6 @@ input[type="range"]::-ms-thumb {
       both,
     red-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
 }
-
 .active .spinner-layer.spinner-yellow {
   /* durations: 4 * ARCTIME */
   -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1)
@@ -7398,7 +7333,6 @@ input[type="range"]::-ms-thumb {
       both,
     yellow-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
 }
-
 .active .spinner-layer.spinner-green {
   /* durations: 4 * ARCTIME */
   -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1)
@@ -7408,7 +7342,6 @@ input[type="range"]::-ms-thumb {
       both,
     green-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
 }
-
 .active .spinner-layer,
 .active .spinner-layer.spinner-blue-only,
 .active .spinner-layer.spinner-red-only,
@@ -7421,7 +7354,6 @@ input[type="range"]::-ms-thumb {
   animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite
     both;
 }
-
 @-webkit-keyframes fill-unfill-rotate {
   12.5% {
     -webkit-transform: rotate(135deg);
@@ -7453,10 +7385,8 @@ input[type="range"]::-ms-thumb {
   /* 3.5 * ARCSIZE */
   to {
     -webkit-transform: rotate(1080deg);
-  }
-  /* 4   * ARCSIZE */
+  } /* 4   * ARCSIZE */
 }
-
 @keyframes fill-unfill-rotate {
   12.5% {
     transform: rotate(135deg);
@@ -7488,10 +7418,8 @@ input[type="range"]::-ms-thumb {
   /* 3.5 * ARCSIZE */
   to {
     transform: rotate(1080deg);
-  }
-  /* 4   * ARCSIZE */
+  } /* 4   * ARCSIZE */
 }
-
 @-webkit-keyframes blue-fade-in-out {
   from {
     opacity: 1;
@@ -7512,7 +7440,6 @@ input[type="range"]::-ms-thumb {
     opacity: 1;
   }
 }
-
 @keyframes blue-fade-in-out {
   from {
     opacity: 1;
@@ -7533,7 +7460,6 @@ input[type="range"]::-ms-thumb {
     opacity: 1;
   }
 }
-
 @-webkit-keyframes red-fade-in-out {
   from {
     opacity: 0;
@@ -7551,7 +7477,6 @@ input[type="range"]::-ms-thumb {
     opacity: 0;
   }
 }
-
 @keyframes red-fade-in-out {
   from {
     opacity: 0;
@@ -7569,7 +7494,6 @@ input[type="range"]::-ms-thumb {
     opacity: 0;
   }
 }
-
 @-webkit-keyframes yellow-fade-in-out {
   from {
     opacity: 0;
@@ -7587,7 +7511,6 @@ input[type="range"]::-ms-thumb {
     opacity: 0;
   }
 }
-
 @keyframes yellow-fade-in-out {
   from {
     opacity: 0;
@@ -7605,7 +7528,6 @@ input[type="range"]::-ms-thumb {
     opacity: 0;
   }
 }
-
 @-webkit-keyframes green-fade-in-out {
   from {
     opacity: 0;
@@ -7623,7 +7545,6 @@ input[type="range"]::-ms-thumb {
     opacity: 0;
   }
 }
-
 @keyframes green-fade-in-out {
   from {
     opacity: 0;
@@ -7641,11 +7562,9 @@ input[type="range"]::-ms-thumb {
     opacity: 0;
   }
 }
-
-/**
+/* *
  * Patch the gap that appear between the two adjacent div.circle-clipper while the
- * spinner is rotating (appears on Chrome 38, Safari 7.1, and IE 11).
- */
+ * spinner is rotating (appears on Chrome 38, Safari 7.1, and IE 11). */
 .gap-patch {
   position: absolute;
   top: 0;
@@ -7655,12 +7574,10 @@ input[type="range"]::-ms-thumb {
   overflow: hidden;
   border-color: inherit;
 }
-
 .gap-patch .circle {
   width: 1000%;
   left: -450%;
 }
-
 .circle-clipper {
   display: inline-block;
   position: relative;
@@ -7697,20 +7614,17 @@ input[type="range"]::-ms-thumb {
   -webkit-transform: rotate(-129deg);
   transform: rotate(-129deg);
 }
-
 .active .circle-clipper.left .circle {
   /* duration: ARCTIME */
   -webkit-animation: left-spin 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
   animation: left-spin 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
 }
-
 .active .circle-clipper.right .circle {
   /* duration: ARCTIME */
   -webkit-animation: right-spin 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite
     both;
   animation: right-spin 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
 }
-
 @-webkit-keyframes left-spin {
   from {
     -webkit-transform: rotate(130deg);
@@ -7722,7 +7636,6 @@ input[type="range"]::-ms-thumb {
     -webkit-transform: rotate(130deg);
   }
 }
-
 @keyframes left-spin {
   from {
     transform: rotate(130deg);
@@ -7734,7 +7647,6 @@ input[type="range"]::-ms-thumb {
     transform: rotate(130deg);
   }
 }
-
 @-webkit-keyframes right-spin {
   from {
     -webkit-transform: rotate(-130deg);
@@ -7746,7 +7658,6 @@ input[type="range"]::-ms-thumb {
     -webkit-transform: rotate(-130deg);
   }
 }
-
 @keyframes right-spin {
   from {
     transform: rotate(-130deg);
@@ -7758,7 +7669,6 @@ input[type="range"]::-ms-thumb {
     transform: rotate(-130deg);
   }
 }
-
 #spinnerContainer.cooldown {
   /* duration: SHRINK_TIME */
   -webkit-animation: container-rotate 1568ms linear infinite,
@@ -7766,7 +7676,6 @@ input[type="range"]::-ms-thumb {
   animation: container-rotate 1568ms linear infinite,
     fade-out 400ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 @-webkit-keyframes fade-out {
   from {
     opacity: 1;
@@ -7775,7 +7684,6 @@ input[type="range"]::-ms-thumb {
     opacity: 0;
   }
 }
-
 @keyframes fade-out {
   from {
     opacity: 1;
@@ -7784,7 +7692,6 @@ input[type="range"]::-ms-thumb {
     opacity: 0;
   }
 }
-
 .slider {
   position: relative;
   height: 400px;
@@ -7863,7 +7770,6 @@ input[type="range"]::-ms-thumb {
 .slider .indicators .indicator-item.active {
   background-color: #4caf50;
 }
-
 .carousel {
   overflow: hidden;
   position: relative;
@@ -7940,7 +7846,6 @@ input[type="range"]::-ms-thumb {
 .carousel .carousel-item:not(.active) .materialboxed {
   pointer-events: none;
 }
-
 .tap-target-wrapper {
   width: 800px;
   height: 800px;
@@ -7949,7 +7854,6 @@ input[type="range"]::-ms-thumb {
   visibility: hidden;
   transition: visibility 0s 0.3s;
 }
-
 .tap-target-wrapper.open {
   visibility: visible;
   transition: visibility 0s;
@@ -8327,12 +8231,10 @@ input[type="range"]::-ms-thumb {
 .timepicker-canvas-out {
   opacity: 0.25;
 }
-
 .timepicker-canvas-bearing {
   stroke: none;
   fill: #795548;
 }
-
 .timepicker-canvas-bg {
   stroke: none;
   fill: #795548;
@@ -8393,7 +8295,6 @@ code {
   html {
     transform: rotate(-90deg);
     transform-origin: left top;
-
     width: 100vh;
     overflow-x: hidden;
     position: absolute;
@@ -8423,9 +8324,6 @@ code {
 }
 /* Cara Bermain */
 .how-to {
-  position: absolute;
-  right: 25%;
-  bottom: 0;
   width: 50%;
   text-align: center;
 }
@@ -8454,15 +8352,16 @@ code {
 .ht-clicker:focus + .ht-hiddendiv {
   display: block;
 }
-  wi
+.sta
 .start-button {
   margin-top: 5%;
   font-weight: bold;
   width: 25%;
 }
-@media screen and (orientation: lanscape) {
+@media only screen and (min-width: 320px) and (max-width: 600px) {
   .start-button {
-    margin-top: 1rem;
+    width: 60%;
+    margin-top: 10%;
   }
 }
 .congklak-hole {
@@ -8508,6 +8407,12 @@ code {
   color: #fafafa !important;
   font-weight: bold !important;
 }
+@media only screen and (min-width: 320px) and (max-width: 600px) {
+  .CongklakHole-score1 {
+    width: 40px;
+    height: 40px;
+  }
+}
 .CongklakHole-player2 {
   background-image: radial-gradient(
     #3e2723,
@@ -8529,6 +8434,12 @@ code {
   height: 60px;
   color: #fafafa !important;
   font-weight: bold !important;
+}
+@media only screen and (min-width: 320px) and (max-width: 600px) {
+  .CongklakHole-score2 {
+    width: 40px;
+    height: 40px;
+  }
 }
 .congklak-hole:disabled {
   cursor: not-allowed;

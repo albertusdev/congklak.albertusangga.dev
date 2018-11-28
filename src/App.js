@@ -96,10 +96,9 @@ export default function App(props) {
       <button className="btn start-button" onClick={handleClickStartButton}>
         {isGameStarted ? "Change Config" : "Start Game"}
       </button>
-
       <div className="how-to">
         <div className="ht-clicker" tabIndex="1">
-          <h1>Cara Bermain</h1>
+          <h3>Cara Bermain</h3>
         </div>
         <div className="ht-hiddendiv">
           <ol>
