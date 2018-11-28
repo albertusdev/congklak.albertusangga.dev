@@ -14,8 +14,6 @@ import {
 } from "../logic/congklakLogicUtils";
 import { simulateCongklakRotation } from "../logic/coreLogic";
 
-import { getEasyAiChoice } from "../ai/EasyAi";
-
 import { getChoice } from "../logic/ai";
 
 import "../App.css";
@@ -83,8 +81,9 @@ function CongklakBoard(props) {
   }
   return (
     <div>
-      {focusedCongklakHoleNumber === -1 &&
-        isGameOver(congklakState) && <h1>Game Over!</h1>}
+      {focusedCongklakHoleNumber === -1 && isGameOver(congklakState) && (
+        <h1>Game Over!</h1>
+      )}
       {!isGameOver(congklakState) && (
         <h1>Current Turn: {turn === 1 ? "Player" : "AI"}</h1>
       )}

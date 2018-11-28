@@ -2,10 +2,17 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import CongklakBoard from "./components/CongklakBoard";
 
+const DIFFICULTY = {
+  EASY: "null",
+  MEDIUM: "10",
+  HARD: "50"
+};
+
 export default function App(props) {
   const [userName, setUserName] = useState("");
   const [isGameStarted, setIsGameStarted] = useState(false);
   const [delay, setDelay] = useState(250);
+  const [difficulty, setDifficulty] = useState(DIFFICULTY.EASY);
 
   useEffect(() => {
     document.title = "Congklak.AI";
@@ -17,6 +24,10 @@ export default function App(props) {
 
   function handleSetDelay(e) {
     setDelay(e.target.value);
+  }
+
+  function handleDifficulty(e) {
+    setDifficulty(e.currentTarget.value);
   }
 
   return (
@@ -32,8 +43,37 @@ export default function App(props) {
             value={delay}
             onChange={handleSetDelay}
           />
+          <div style={{ display: "flex" }}>
+            <input
+              type="radio"
+              value={DIFFICULTY.EASY}
+              onChange={handleDifficulty}
+              checked={difficulty === DIFFICULTY.EASY}
+            />
+            Easy
+            <br />
+            <input
+              type="radio"
+              value={DIFFICULTY.MEDIUM}
+              onChange={handleDifficulty}
+              checked={difficulty === DIFFICULTY.MEDIUM}
+            />
+            Medium
+            <br />
+            <input
+              type="radio"
+              value={DIFFICULTY.HARD}
+              onChange={handleDifficulty}
+              checked={difficulty === DIFFICULTY.HARD}
+            />
+            Hard
+            <br />
+          </div>
         </div>
       )}
+
+      <div />
+
       <CongklakBoard disabled={isGameStarted} delay={delay} />
       <div>
         <button className="start-button" onClick={handleClickStartButton}>
