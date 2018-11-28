@@ -59,3 +59,19 @@ export const isPlayer2OutOfMove = congklakState =>
 
 export const isGameOver = congklakState =>
   isPlayer1OutOfMove(congklakState) && isPlayer2OutOfMove(congklakState);
+
+export function getEndOfGameMessage(congklakState) {
+  if (
+    congklakState[PLAYER1_SCORE_HOLE_NUMBER] ===
+    congklakState[PLAYER2_PLAYABLE_HOLE_NUMBERS]
+  ) {
+    return "Draw";
+  } else if (
+    congklakState[PLAYER1_SCORE_HOLE_NUMBER] >
+    congklakState[PLAYER2_SCORE_HOLE_NUMBER]
+  ) {
+    return "Player wins!";
+  } else {
+    return "Congklak.AI wins!";
+  }
+}

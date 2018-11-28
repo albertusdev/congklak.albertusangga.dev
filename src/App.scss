@@ -1,0 +1,223 @@
+@charset "utf-8";
+
+$primary-color: #795548;
+// $primary-color-light: lighten($primary-color, 15%) default;
+// $primary-color-dark: darken($primary-color, 15%) default;
+
+$secondary-color: #795548;
+// $success-color: color("brown", "base") default;
+// $error-color: color("red", "base") default;
+// $link-color: color("light-blue", "darken-1") default;
+
+@import "materialize-src/sass/materialize.scss";
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url("https://i.imgur.com/azWhFhd.png");
+  background-size: cover;
+  background-position: center center;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+@media screen and (min-width: 320px) and (max-width: 545px) and (orientation: landscape) {
+  html {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    width: 100vh;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+}
+
+#root {
+  height: 100vh;
+  width: 100%;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.App {
+  text-align: center;
+  width: 100vw;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/*Cara Bermain*/
+.how-to {
+  position: absolute;
+  right: 25%;
+  bottom: 0;
+  width: 50%;
+  text-align: center;
+  @media only screen and (min-width: 320px) and (max-width: 600px) {
+    width: 80%;
+  }
+}
+
+.ht-clicker {
+  text-align: center;
+  color: white;
+  background-color: #8b4513;
+  outline: none;
+  cursor: pointer;
+}
+
+.ht-hiddendiv {
+  text-align: left;
+  padding: 1em;
+  color: black;
+  display: none;
+  background-color: #deb887;
+}
+.ht-hiddendiv > ol {
+  padding-left: 20px;
+}
+
+.ht-clicker:focus + .ht-hiddendiv {
+  display: block;
+}
+/**/
+
+.start-button {
+  margin-top: 5%;
+  font-weight: bold;
+  width: 25%;
+}
+
+@media screen and (orientation: lanscape) {
+  .start-button {
+    margin-top: 1rem;
+  }
+}
+
+.congklak-hole {
+  width: 47px;
+  height: 47px;
+  border: none;
+  border-radius: 50%;
+  margin: 0.5rem;
+  padding: 0.75rem 1rem;
+  outline: none;
+  cursor: pointer;
+  color: white;
+  @media only screen and (min-width: 320px) and (max-width: 600px) {
+    width: 30px;
+    height: 30px;
+    margin: 0.2rem;
+    padding: 0.4rem 0.5rem;
+    font-size: 10px;
+    outline: none;
+  }
+}
+
+.CongklakHole-player1 {
+  background-image: radial-gradient(
+    #916e50,
+    #916e50,
+    #916e50,
+    #5d452a,
+    #5d452a
+  );
+}
+.CongklakHole-score1 {
+  background-image: radial-gradient(
+    #916e50,
+    #916e50,
+    #916e50,
+    #5d452a,
+    #5d452a
+  );
+  width: 60px;
+  height: 60px;
+  color: #fafafa !important;
+  font-weight: bold !important;
+}
+.CongklakHole-player2 {
+  background-image: radial-gradient(
+    #3e2723,
+    #4e342e,
+    #5d4037,
+    #6d4c41,
+    #795548
+  );
+}
+.CongklakHole-score2 {
+  background-image: radial-gradient(
+    #3e2723,
+    #4e342e,
+    #5d4037,
+    #6d4c41,
+    #795548
+  );
+  width: 60px;
+  height: 60px;
+  color: #fafafa !important;
+  font-weight: bold !important;
+}
+
+.congklak-hole:disabled {
+  cursor: not-allowed;
+  color: #bcaaa4;
+}
+
+.congklak-hole-focused {
+  // background-image: radial-gradient(#3e2723, #3e2723, #3e2723, #bcaaa4, #bcaaa4);
+  border: solid 5px white;
+}
+
+.congklak-board {
+  background-image: url("https://i.imgur.com/V0MC22D.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  box-shadow: 10px 10px #351a00;
+  border: 1px solid #351a00;
+  padding: 10px 50px;
+  border-top-left-radius: 200px 100%;
+  border-bottom-left-radius: 200px 100%;
+  border-top-right-radius: 200px 100%;
+  border-bottom-right-radius: 200px 100%;
+  @media only screen and (min-width: 320px) and (max-width: 600px) {
+    padding: 10px 30px;
+    border-top-left-radius: 100px 100%;
+    border-bottom-left-radius: 100px 100%;
+    border-top-right-radius: 100px 100%;
+    border-bottom-right-radius: 100px 100%;
+  }
+}
+.inhand-counter {
+  font-size: 30px;
+  color: white;
+  font-weight: bold;
+  @media only screen and (min-width: 320px) and (max-width: 600px) {
+    font-size: 15px;
+  }
+}
+
+[type="radio"]:checked + span {
+  font-weight: bold;
+}
+
+[type="radio"] + span {
+  color: black;
+}

@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import CongklakBoard from "./components/CongklakBoard";
-
-const DIFFICULTY = {
-  EASY: "null",
-  MEDIUM: "10",
-  HARD: "50"
-};
+import { DIFFICULTY } from "./logic/congklakDifficulty";
 
 export default function App(props) {
   const [userName, setUserName] = useState("");
@@ -34,58 +29,79 @@ export default function App(props) {
     <div className="App">
       <img src="https://i.imgur.com/dZa4gaQ.png" width="400" />
       {!isGameStarted && (
-        <div>
-          <div>Choose Speed</div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between"
+          }}
+        >
+          <h5>Choose Delay</h5>
           <input
             type="range"
             min="1"
-            max="1000"
+            max="500"
             value={delay}
             onChange={handleSetDelay}
           />
-          <div style={{ display: "flex" }}>
-            <input
-              type="radio"
-              value={DIFFICULTY.EASY}
-              onChange={handleDifficulty}
-              checked={difficulty === DIFFICULTY.EASY}
-            />
-            Easy
-            <br />
-            <input
-              type="radio"
-              value={DIFFICULTY.MEDIUM}
-              onChange={handleDifficulty}
-              checked={difficulty === DIFFICULTY.MEDIUM}
-            />
-            Medium
-            <br />
-            <input
-              type="radio"
-              value={DIFFICULTY.HARD}
-              onChange={handleDifficulty}
-              checked={difficulty === DIFFICULTY.HARD}
-            />
-            Hard
-            <br />
-          </div>
+          <h5 style={{ marginTop: "1.5rem" }}>Choose Congklak.AI Difficulty</h5>
+          <form
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              alignItems: "flex-start",
+              width: "20rem"
+            }}
+          >
+            <label>
+              <input
+                type="radio"
+                value={DIFFICULTY.EASY}
+                onChange={handleDifficulty}
+                checked={difficulty === DIFFICULTY.EASY}
+              />
+              <span>Easy</span>
+            </label>
+            <label>
+              <input
+                type="radio"
+                value={DIFFICULTY.MEDIUM}
+                onChange={handleDifficulty}
+                checked={difficulty === DIFFICULTY.MEDIUM}
+              />
+              <span>Medium</span>
+            </label>
+            <label>
+              <input
+                type="radio"
+                value={DIFFICULTY.HARD}
+                onChange={handleDifficulty}
+                checked={difficulty === DIFFICULTY.HARD}
+              />
+              <span>Hard</span>
+            </label>
+          </form>
         </div>
       )}
 
       <div />
 
-      <CongklakBoard disabled={isGameStarted} delay={delay} />
-      <div>
-        <button className="start-button" onClick={handleClickStartButton}>
-          {isGameStarted ? "Change Speed" : "Start/Resume"}
-        </button>
-      </div>
+      <CongklakBoard
+        disabled={isGameStarted}
+        delay={Number.parseInt(delay)}
+        difficulty={difficulty}
+      />
 
-      <div class="how-to">
-        <div class="ht-clicker" tabindex="1">
+      <button className="btn start-button" onClick={handleClickStartButton}>
+        {isGameStarted ? "Change Config" : "Start Game"}
+      </button>
+
+      <div className="how-to">
+        <div className="ht-clicker" tabIndex="1">
           <h1>Cara Bermain</h1>
         </div>
-        <div class="ht-hiddendiv">
+        <div className="ht-hiddendiv">
           <ol>
             <li>
               Pemain memilih satu lubang pada sisi milik pemain, yaitu sisi

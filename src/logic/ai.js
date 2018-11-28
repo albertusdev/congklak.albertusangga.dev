@@ -6,13 +6,18 @@ import {
   PLAYER1_PLAYABLE_HOLE_NUMBERS
 } from "../logic/congklakLogicUtils";
 import { getCongklakNextState } from "./coreLogic";
+import { DIFFICULTY } from "./congklakDifficulty";
 
 const MINUS_INFINITY = -10000000;
 const PLUS_INFINITY = +10000000;
 
 export async function getChoice(congklakState, difficulty) {
-  // return getRandomChoice(congklakState);
-  return await minimax(congklakState);
+  if (difficulty === DIFFICULTY.EASY) {
+    return getRandomChoice(congklakState);
+  } else {
+    console.log(Number.parseInt(difficulty));
+    return await minimax(congklakState, Number.parseInt(difficulty));
+  }
 }
 
 // Dumb AI: Random pick available move

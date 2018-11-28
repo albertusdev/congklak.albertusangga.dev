@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import CongklakHole from "./CongklakHole";
 import {
   generateCongklakInitialState,
@@ -10,11 +11,13 @@ import {
   isGameOver,
   PLAYER2_PLAYABLE_HOLE_NUMBERS,
   isPlayer1OutOfMove,
-  isPlayer2OutOfMove
+  isPlayer2OutOfMove,
+  getEndOfGameMessage
 } from "../logic/congklakLogicUtils";
 import { simulateCongklakRotation } from "../logic/coreLogic";
 import { waitFor } from "../utils";
 import { getChoice } from "../logic/ai";
+import Spinner from "react-spinkit";
 
 import "../App.css";
 
@@ -30,13 +33,7 @@ function CongklakBoard(props) {
     displayNumberOfSeedsToBeDistributed,
     setDisplayNumberOfSeedsToBeDistributed
   ] = useState(-1);
-  const [shouldCallAi, setShouldCallAi] = useState(false);
-
-  const getTurn = () => {
-    return turn;
-  };
-
-  const getState = () => congklakState;
+  const [isAiThinking, setIsAiThinking] = useState(false);
 
   const handlePlayerClick = (
     selectedHoleNumber,
@@ -65,7 +62,10 @@ function CongklakBoard(props) {
           setTurn(getNextTurn(nextTurn));
         }
 
-        let selectedHoleNumber = await getChoice(nextState, null);
+        setIsAiThinking(true);
+        console.log(props.difficulty);
+        let selectedHoleNumber = await getChoice(nextState, props.difficulty);
+        setIsAiThinking(false);
 
         console.log(`AI choose ${selectedHoleNumber}`);
 
@@ -82,21 +82,42 @@ function CongklakBoard(props) {
 
         nextState = result.nextState;
         nextTurn = result.nextTurn;
+        if (nextTurn === 1 && isPlayer1OutOfMove(nextState)) {
+          setTurn(2);
+        }
       }
     }
   };
 
   if (!props.disabled) {
-    return <div />;
+    return <React.Fragment />;
   }
   return (
-    <div>
+    <React.Fragment>
       {focusedCongklakHoleNumber === -1 && isGameOver(congklakState) && (
-        <h1>Game Over!</h1>
+        <React.Fragment>
+          <h2 style={{ marginBottom: "0" }}>Game Over!</h2>
+          <h3 style={{ fontStyle: "bold", color: "white" }}>
+            {getEndOfGameMessage(congklakState)}
+          </h3>
+          <button
+            className="btn brown-light-3"
+            onClick={() => {
+              setCongklakState(generateCongklakInitialState());
+              setTurn(1);
+            }}
+          >
+            Start Over
+          </button>
+        </React.Fragment>
       )}
+
       {!isGameOver(congklakState) && (
-        <h1>Current Turn: {turn === 1 ? "Player" : "AI"}</h1>
+        <h3>Current Turn: {turn === 1 ? "Player" : "AI"}</h3>
       )}
+
+      {!!isAiThinking && <h1>Ai is thinking...</h1>}
+
       <div
         className="congklak-board"
         style={{ display: "flex", flexDirection: "column" }}
@@ -143,7 +164,9 @@ function CongklakBoard(props) {
             disabled
           />
           {displayNumberOfSeedsToBeDistributed !== -1 && (
-            <div>{displayNumberOfSeedsToBeDistributed}</div>
+            <div className="inhand-counter">
+              {displayNumberOfSeedsToBeDistributed}
+            </div>
           )}
           <CongklakHole
             className="CongklakHole-score2"
@@ -168,8 +191,14 @@ function CongklakBoard(props) {
           ))}
         </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 }
+
+CongklakBoard.propTypes = {
+  difficulty: PropTypes.string.isRequired,
+  delay: PropTypes.number.isRequired,
+  disabled: PropTypes.bool.isRequired
+};
 
 export default CongklakBoard;
