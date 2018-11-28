@@ -91,4 +91,22 @@ async function getMax(
   depthLimit,
   alpha = MINUS_INFINITY,
   beta = PLUS_INFINITY
-) {}
+) {
+  if (terminalTest(state, 1)) {
+    return utility(state, 1);
+  }
+  let v = MINUS_INFINITY;
+  let choice = null;
+  for (let holeNumber of getPlayer1PlayableHoles(state)) {
+    if (state[holeNumber] > 0) {
+      let nextState = await getCongklakNextState(state, 1, holeNumber);
+      v = Math.max(v, getMin(nextState, depthLimit - 1, alpha, beta));
+      if (v >= beta) {
+        choice = holeNumber;
+        return v;
+      }
+      alpha = Math.max(alpha, v);
+    }
+    return v;
+  }
+}
