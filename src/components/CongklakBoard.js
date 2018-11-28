@@ -51,42 +51,43 @@ function CongklakBoard(props) {
 
       delay
     });
-    console.log("FINISH SIMULATION...", nextState, nextTurn);
-    if (nextTurn === 1) {
-      if (isPlayer1OutOfMove(nextState)) {
-        setTurn(getNextTurn(nextTurn));
+    if (nextTurn === 1 && isPlayer1OutOfMove(nextState)) {
+      setTurn(getNextTurn(nextTurn));
+    }
+    while (nextTurn === 2) {
+      if (isPlayer2OutOfMove(nextState)) {
+        setTurn(1);
+        break;
       }
-    } else {
-      while (nextTurn === 2) {
-        if (isPlayer2OutOfMove(nextState)) {
-          setTurn(getNextTurn(nextTurn));
-        }
 
-        setIsAiThinking(true);
-        console.log(props.difficulty);
-        let selectedHoleNumber = await getChoice(nextState, props.difficulty);
-        setIsAiThinking(false);
+      setIsAiThinking(true);
+      let selectedHoleNumber = await getChoice(nextState, props.difficulty);
+      setIsAiThinking(false);
 
-        console.log(`AI choose ${selectedHoleNumber}`);
+      console.log(`Current State: `, nextState);
+      console.log(`AI choose ${selectedHoleNumber}`);
 
-        let result = await simulateCongklakRotation({
-          congklakState: nextState,
-          turn: nextTurn,
-          selectedHoleNumber,
-          setCongklakStateFn: setCongklakState,
-          setFocusedCongklakHoleNumberFn: setFocusedCongklakHoleNumber,
-          setDisplayNumberOfSeedsToBeDistributedFn: setDisplayNumberOfSeedsToBeDistributed,
-          setTurnFn: setTurn,
-          delay: props.delay
-        });
+      let result = await simulateCongklakRotation({
+        congklakState: nextState,
+        turn: nextTurn,
+        selectedHoleNumber,
+        setCongklakStateFn: setCongklakState,
+        setFocusedCongklakHoleNumberFn: setFocusedCongklakHoleNumber,
+        setDisplayNumberOfSeedsToBeDistributedFn: setDisplayNumberOfSeedsToBeDistributed,
+        setTurnFn: setTurn,
+        delay: props.delay
+      });
 
-        nextState = result.nextState;
-        nextTurn = result.nextTurn;
-        if (nextTurn === 1 && isPlayer1OutOfMove(nextState)) {
-          setTurn(2);
-        }
+      nextState = result.nextState;
+      nextTurn = result.nextTurn;
+      if (nextTurn === 1 && isPlayer1OutOfMove(nextState)) {
+        setTurn(1);
+        await waitFor(delay);
+        setTurn(2);
+        nextTurn = 2;
       }
     }
+    setTurn(1);
   };
 
   if (!props.disabled) {
@@ -97,7 +98,7 @@ function CongklakBoard(props) {
       {focusedCongklakHoleNumber === -1 && isGameOver(congklakState) && (
         <React.Fragment>
           <h2 style={{ marginBottom: "0" }}>Game Over!</h2>
-          <h3 style={{ fontStyle: "bold", color: "white" }}>
+          <h3 style={{ fontStyle: "bold" }}>
             {getEndOfGameMessage(congklakState)}
           </h3>
           <button
@@ -106,6 +107,7 @@ function CongklakBoard(props) {
               setCongklakState(generateCongklakInitialState());
               setTurn(1);
             }}
+            style={{ marginBottom: "1.5rem" }}
           >
             Start Over
           </button>

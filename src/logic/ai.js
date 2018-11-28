@@ -15,7 +15,6 @@ export async function getChoice(congklakState, difficulty) {
   if (difficulty === DIFFICULTY.EASY) {
     return getRandomChoice(congklakState);
   } else {
-    console.log(Number.parseInt(difficulty));
     return await minimax(congklakState, Number.parseInt(difficulty));
   }
 }
@@ -38,10 +37,6 @@ function terminalTest(congklakState, turn) {
 
 function utility(congklakState, turn) {
   return congklakState[getOwnScoreHoleNumber(turn)];
-}
-
-function evaluation(congklakState, turn) {
-  return utility(congklakState, turn);
 }
 
 // Return the most optimum choice between hole number 8 - 14

@@ -89,6 +89,7 @@ export async function simulateCongklakRotation({
   await waitFor(delay);
   if (currentHoleNumber !== getNextHoleNumber(getOwnScoreHoleNumber(turn))) {
     setTurnFn(getNextTurn(turn));
+    await waitFor(delay);
     return { nextState: congklakState, nextTurn: getNextTurn(turn) };
   }
   return { nextState: congklakState, nextTurn: turn };
