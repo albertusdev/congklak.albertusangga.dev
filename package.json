@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "lint-staged": "^8.1.0",
     "node-sass": "^4.10.0",
     "prop-types": "^15.6.2",
     "react": "^16.7.0-alpha.0",
@@ -34,7 +35,13 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged"
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "*.{js,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
