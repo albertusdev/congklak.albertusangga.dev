@@ -91,8 +91,9 @@ function CongklakBoard(props) {
   }
   return (
     <div>
-      {focusedCongklakHoleNumber === -1 &&
-        isGameOver(congklakState) && <h1>Game Over!</h1>}
+      {focusedCongklakHoleNumber === -1 && isGameOver(congklakState) && (
+        <h1>Game Over!</h1>
+      )}
       {!isGameOver(congklakState) && (
         <h1>Current Turn: {turn === 1 ? "Player" : "AI"}</h1>
       )}
@@ -101,7 +102,6 @@ function CongklakBoard(props) {
         style={{ display: "flex", flexDirection: "column" }}
       >
         <div
-          className="CongklakHole-player1"
           style={{
             display: "flex",
             flexDirection: "row-reverse",
@@ -111,6 +111,7 @@ function CongklakBoard(props) {
         >
           {getPlayer1PlayableHoles(congklakState).map((value, idx) => (
             <CongklakHole
+              className="CongklakHole-player1"
               key={`congklak-hole-${idx - 1}`}
               focused={focusedCongklakHoleNumber === idx}
               value={value}
@@ -154,12 +155,10 @@ function CongklakBoard(props) {
         </div>
 
         {/* Player 2 Holes */}
-        <div
-          className="CongklakHole-player2"
-          style={{ display: "flex", justifyContent: "center", flex: 1 }}
-        >
+        <div style={{ display: "flex", justifyContent: "center", flex: 1 }}>
           {getPlayer2PlayableHoles(congklakState).map((value, idx) => (
             <CongklakHole
+              className="CongklakHole-player2"
               key={`congklak-hole-${idx + 8}`}
               focused={focusedCongklakHoleNumber === idx + 8}
               value={value}

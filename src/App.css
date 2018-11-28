@@ -91,7 +91,7 @@
   color: white;
 }
 
-.CongklakHole-player1 > button {
+.CongklakHole-player1 {
   background-image: radial-gradient(
     #916e50,
     #916e50,
@@ -109,7 +109,7 @@
     #5d452a
   );
 }
-.CongklakHole-player2 > button {
+.CongklakHole-player2 {
   background-image: radial-gradient(
     #231100,
     #231100,
@@ -131,7 +131,6 @@
   cursor: not-allowed;
   color: white;
 }
-
 .congklak-hole-focused {
   color: red;
   background-image: radial-gradient(brown, brown, brown, black, black);
@@ -153,7 +152,6 @@
   color: white;
   font-weight: bold;
 }
-
 @media only screen and (min-width: 320px) and (max-width: 600px) {
   .congklak-hole {
     width: 30px;
