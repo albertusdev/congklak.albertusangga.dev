@@ -6,7 +6,6 @@ import {
   PLAYER1_PLAYABLE_HOLE_NUMBERS
 } from "../logic/congklakLogicUtils";
 import { getCongklakNextState } from "./coreLogic";
-import moment from "moment";
 
 const MINUS_INFINITY = -10000000;
 const PLUS_INFINITY = +10000000;
