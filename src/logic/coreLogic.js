@@ -70,6 +70,10 @@ export async function simulateCongklakRotation({
         setCongklakStateHelper(opposite, 0);
         await waitFor(delay);
 
+        setFocusedCongklakHoleNumberFn(getOwnScoreHoleNumber(turn));
+        setDisplayNumberOfSeedsToBeDistributedFn(take);
+        await waitFor(delay);
+
         setCongklakStateHelper(
           getOwnScoreHoleNumber(turn),
           congklakState[getOwnScoreHoleNumber(turn)] + take
@@ -82,10 +86,12 @@ export async function simulateCongklakRotation({
 
   setDisplayNumberOfSeedsToBeDistributedFn(-1);
   setFocusedCongklakHoleNumberFn(-1);
+  await waitFor(delay);
   if (currentHoleNumber !== getNextHoleNumber(getOwnScoreHoleNumber(turn))) {
     setTurnFn(getNextTurn(turn));
+    return { nextState: congklakState, nextTurn: getNextTurn(turn) };
   }
-  return congklakState;
+  return { nextState: congklakState, nextTurn: turn };
 }
 
 export async function getCongklakNextState(
@@ -93,17 +99,43 @@ export async function getCongklakNextState(
   turn,
   selectedHoleNumber
 ) {
-  let copyState = [...currentState];
-  return await simulateCongklakRotation({
-    congklakState: copyState,
-    turn,
-    selectedHoleNumber,
+  const nextState = [...currentState];
 
-    setCongklakStateFn: () => {},
-    setFocusedCongklakHoleNumberFn: () => {},
-    setDisplayNumberOfSeedsToBeDistributedFn: () => {},
-    setTurnFn: () => {},
+  let seeds = nextState[selectedHoleNumber];
+  let currentHoleNumber = getNextHoleNumber(selectedHoleNumber);
 
-    delay: 0
-  });
+  nextState[selectedHoleNumber] = 0;
+
+  while (seeds > 0) {
+    if (currentHoleNumber === getEnemyScoreHoleNumber(turn)) {
+      currentHoleNumber = getNextHoleNumber(currentHoleNumber);
+      continue;
+    }
+
+    seeds -= 1;
+    nextState[currentHoleNumber] += 1;
+
+    if (
+      seeds === 0 &&
+      currentHoleNumber !== PLAYER1_SCORE_HOLE_NUMBER &&
+      currentHoleNumber !== PLAYER2_SCORE_HOLE_NUMBER
+    ) {
+      if (nextState[currentHoleNumber] > 1) {
+        seeds += nextState[currentHoleNumber];
+        nextState[currentHoleNumber] = 0;
+      } else if (isInOwnArea(currentHoleNumber, turn)) {
+        const opposite = getOppositeHoleNumber(currentHoleNumber);
+        const take = nextState[opposite];
+        nextState[opposite] = 0;
+        nextState[getOwnScoreHoleNumber(turn)] += take;
+      }
+    }
+
+    currentHoleNumber = getNextHoleNumber(currentHoleNumber);
+  }
+
+  if (currentHoleNumber !== getNextHoleNumber(getOwnScoreHoleNumber(turn))) {
+    return { nextState, nextTurn: getNextTurn(turn) };
+  }
+  return { nextState, nextTurn: turn };
 }

@@ -27,6 +27,7 @@ export const isInOwnArea = (holeNumber, turn) =>
 
 export const getNextHoleNumber = holeNumber => (holeNumber + 1) % 16;
 export const generateCongklakInitialState = () => {
+  // return [3, 1, 2, 0, 0, 0, 0, 50, 0, 0, 0, 10, 1, 0, 0, 31];
   return [7, 7, 7, 7, 7, 7, 7, 0, 7, 7, 7, 7, 7, 7, 7, 0];
 };
 

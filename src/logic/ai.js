@@ -3,21 +3,17 @@ import {
   getOwnScoreHoleNumber,
   isPlayer2OutOfMove,
   isPlayer1OutOfMove,
-  getPlayer1PlayableHoles,
-  getPlayer2PlayableHoles
+  PLAYER1_PLAYABLE_HOLE_NUMBERS
 } from "../logic/congklakLogicUtils";
 import { getCongklakNextState } from "./coreLogic";
+import moment from "moment";
 
 const MINUS_INFINITY = -10000000;
 const PLUS_INFINITY = +10000000;
 
-export function getChoice(congklakState, difficulty) {
-  return getRandomChoice(congklakState);
-  //   if (difficulty === 0) {
-  //     return getEasyAiChoice(congklakState);
-  //   } else {
-  //     return minimax(congklakState);
-  //   }
+export async function getChoice(congklakState, difficulty) {
+  // return getRandomChoice(congklakState);
+  return await minimax(congklakState);
 }
 
 // Dumb AI: Random pick available move
@@ -45,15 +41,24 @@ function evaluation(congklakState, turn) {
 }
 
 // Return the most optimum choice between hole number 8 - 14
-async function minimax(state, depthLimit = null) {
+async function minimax(state, depthLimit = 8) {
   let maximum = MINUS_INFINITY;
   let choice = null;
-  for (let holeNumber of getPlayer2PlayableHoles(state)) {
-    let newState = await getCongklakNextState(state, 2, holeNumber);
-    let actionResult = await getMin(newState, depthLimit);
-    if (actionResult > maximum) {
-      maximum = actionResult;
-      choice = holeNumber;
+  console.log("Considering Actions: ");
+
+  for (let holeNumber of PLAYER2_PLAYABLE_HOLE_NUMBERS) {
+    if (state[holeNumber] > 0) {
+      let { nextState, nextTurn } = await getCongklakNextState(
+        state,
+        2,
+        holeNumber
+      );
+      let actionResult = await getMin(nextState, depthLimit);
+      console.log(`Actions: ${holeNumber}, Score: ${actionResult}`);
+      if (actionResult > maximum) {
+        maximum = actionResult;
+        choice = holeNumber;
+      }
     }
   }
   return choice;
@@ -65,23 +70,31 @@ async function getMin(
   alpha = MINUS_INFINITY,
   beta = PLUS_INFINITY
 ) {
-  if (terminalTest(state, 1)) {
-    return utility(state, 1);
+  if (depthLimit <= 0 || terminalTest(state, 1)) {
+    return utility(state, 2);
   }
-  let v = PLUS_INFINITY;
-  let choice = null;
-  for (let holeNumber of getPlayer1PlayableHoles(state)) {
+  let minValue = PLUS_INFINITY;
+  for (let holeNumber of PLAYER1_PLAYABLE_HOLE_NUMBERS) {
     if (state[holeNumber] > 0) {
-      let nextState = await getCongklakNextState(state, 1, holeNumber);
-      v = Math.min(v, getMax(nextState, depthLimit - 1, alpha, beta));
-      if (v <= alpha) {
-        choice = holeNumber;
-        return v;
+      let { nextState, nextTurn } = await getCongklakNextState(
+        state,
+        1,
+        holeNumber
+      );
+      let currentValue = null;
+      if (nextTurn === 2) {
+        currentValue = await getMax(nextState, depthLimit - 1, alpha, beta);
+      } else {
+        currentValue = await getMin(nextState, depthLimit - 1, alpha, beta);
       }
-      beta = Math.min(beta, v);
+      minValue = Math.min(minValue, currentValue);
+      if (minValue <= alpha) {
+        return minValue;
+      }
+      beta = Math.min(beta, minValue);
     }
-    return v;
   }
+  return minValue;
 }
 
 async function getMax(
@@ -90,21 +103,29 @@ async function getMax(
   alpha = MINUS_INFINITY,
   beta = PLUS_INFINITY
 ) {
-  if (terminalTest(state, 1)) {
-    return utility(state, 1);
+  if (depthLimit <= 0 || terminalTest(state, 2)) {
+    return utility(state, 2);
   }
-  let v = MINUS_INFINITY;
-  let choice = null;
-  for (let holeNumber of getPlayer1PlayableHoles(state)) {
+  let maxValue = MINUS_INFINITY;
+  for (let holeNumber of PLAYER2_PLAYABLE_HOLE_NUMBERS) {
     if (state[holeNumber] > 0) {
-      let nextState = await getCongklakNextState(state, 1, holeNumber);
-      v = Math.max(v, getMin(nextState, depthLimit - 1, alpha, beta));
-      if (v >= beta) {
-        choice = holeNumber;
-        return v;
+      let { nextState, nextTurn } = await getCongklakNextState(
+        state,
+        2,
+        holeNumber
+      );
+      let currentValue = null;
+      if (nextTurn === 1) {
+        currentValue = await getMin(nextState, depthLimit - 1, alpha, beta);
+      } else {
+        currentValue = await getMax(nextState, depthLimit - 1, alpha, beta);
       }
-      alpha = Math.max(alpha, v);
+      maxValue = Math.max(maxValue, currentValue);
+      if (maxValue >= beta) {
+        return maxValue;
+      }
+      alpha = Math.max(alpha, maxValue);
     }
-    return v;
   }
+  return maxValue;
 }
