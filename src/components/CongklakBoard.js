@@ -53,6 +53,7 @@ function CongklakBoard(props) {
     });
     if (nextTurn === 1 && isPlayer1OutOfMove(nextState)) {
       setTurn(getNextTurn(nextTurn));
+      nextTurn = 2;
     }
     while (nextTurn === 2) {
       if (isPlayer2OutOfMove(nextState)) {
