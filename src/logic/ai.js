@@ -35,23 +35,29 @@ function terminalTest(congklakState, turn) {
   }
 }
 
-function utility(congklakState) {
-  return congklakState[getOwnScoreHoleNumber(congklakState)];
+function utility(congklakState, turn) {
+  return congklakState[getOwnScoreHoleNumber(turn)];
 }
 
-function evaluation(congklakState) {
-  return utility(congklakState);
+function evaluation(congklakState, turn) {
+  return utility(congklakState, turn);
 }
 
-function minimax(state) {
+// Return the most optimum choice between hole number 8 - 14
+function minimax(state, depthLimit = null) {
   let maximum = MINUS_INFINITY;
+  let choice = null;
   let indexes = getPlayer2PlayableHoles(state);
   for (let i = 0; i < indexes.length; i += 1) {
     let holeNumber = indexes[i];
     let newState = getCongklakNextState(state, 2, holeNumber);
-    maximum = Math.max(maximum, getMin(newState, null));
+    let actionResult = getMin(newState, depthLimit);
+    if (actionResult > maximum) {
+      maximum = actionResult;
+      choice = holeNumber;
+    }
   }
-  return maximum;
+  return choice;
 }
 
 function getMin(

@@ -9,8 +9,6 @@ import {
   getOppositeHoleNumber
 } from "./congklakLogicUtils";
 
-import { getChoice } from "./ai";
-
 import { waitFor } from "../utils";
 
 export async function simulateCongklakRotation({
@@ -86,17 +84,20 @@ export async function simulateCongklakRotation({
   setFocusedCongklakHoleNumberFn(-1);
   if (currentHoleNumber !== getNextHoleNumber(getOwnScoreHoleNumber(turn))) {
     setTurnFn(getNextTurn(turn));
-    return 1;
   }
-  return 0;
+  return congklakState;
 }
 
-export function getCongklakNextState(currentState, turn, selectedHoleNumber) {
-  const copyState = [...currentState];
-  simulateCongklakRotation({
+export async function getCongklakNextState(
+  currentState,
+  turn,
+  selectedHoleNumber
+) {
+  let copyState = [...currentState];
+  return await simulateCongklakRotation({
     congklakState: copyState,
-    turn: turn,
-    selectedHoleNumber: selectedHoleNumber,
+    turn,
+    selectedHoleNumber,
 
     setCongklakStateFn: () => {},
     setFocusedCongklakHoleNumberFn: () => {},
@@ -105,5 +106,4 @@ export function getCongklakNextState(currentState, turn, selectedHoleNumber) {
 
     delay: 0
   });
-  return copyState;
 }
