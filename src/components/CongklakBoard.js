@@ -52,7 +52,7 @@ function CongklakBoard(props) {
       delay
     });
     if (nextTurn === 1 && isPlayer1OutOfMove(nextState)) {
-      setTurn(getNextTurn(nextTurn));
+      setTurn(2);
       nextTurn = 2;
     }
     while (nextTurn === 2) {
@@ -83,7 +83,7 @@ function CongklakBoard(props) {
       nextTurn = result.nextTurn;
       if (nextTurn === 1 && isPlayer1OutOfMove(nextState)) {
         setTurn(1);
-        await waitFor(delay);
+        await waitFor(2 * delay);
         setTurn(2);
         nextTurn = 2;
       }
