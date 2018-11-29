@@ -131,7 +131,14 @@ function CongklakBoard(props) {
 
       {!isGameOver(congklakState) && (
         <React.Fragment>
-          <h5 style={{ margin: "0.25rem 0", display: "flex" }}>
+          <h5
+            style={{
+              margin: "0.25rem 0",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
             <span>Current Turn:</span>
             <span
               style={{
