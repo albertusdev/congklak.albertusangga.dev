@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import CongklakBoard from "./components/CongklakBoard";
 import { DIFFICULTY } from "./logic/congklakDifficulty";
+import ScoreboardList from "./components/Scoreboard";
 
 export default function App(props) {
-  const [userName, setUserName] = useState("");
+  const [username, setUsername] = useState("");
   const [isGameStarted, setIsGameStarted] = useState(false);
   const [delay, setDelay] = useState(250);
   const [difficulty, setDifficulty] = useState(DIFFICULTY.EASY);
@@ -23,6 +24,10 @@ export default function App(props) {
 
   function handleDifficulty(e) {
     setDifficulty(e.currentTarget.value);
+  }
+
+  function handleSetUsername(e) {
+    setUsername(e.target.value);
   }
 
   return (
@@ -97,6 +102,32 @@ export default function App(props) {
                 <span>Brutal</span>
               </label>
             </form>
+            <div
+              style={{
+                marginTop: "1rem",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center"
+              }}
+            >
+              <h5
+                for="first_name"
+                style={{
+                  fontWeight: "bold",
+                  color: "black"
+                }}
+              >
+                Your Name
+              </h5>
+              <input
+                placeholder="Your Name"
+                type="text"
+                value={username}
+                onChange={handleSetUsername}
+                id="first_name"
+              />
+            </div>
           </div>
         )}
 
@@ -104,8 +135,12 @@ export default function App(props) {
           disabled={isGameStarted}
           delay={Number.parseInt(delay)}
           difficulty={difficulty}
+          name={username}
         />
       </div>
+
+      <h4>Scoreboard</h4>
+      <ScoreboardList />
 
       <div className="buttondiv">
         <button className="btn start-button" onClick={handleClickStartButton}>

@@ -17,6 +17,10 @@ import { waitFor } from "../utils";
 import { getChoice } from "../logic/ai";
 import Spinner from "react-spinkit";
 
+import axios from "axios";
+import { DASHBOARD_URL } from "../urls";
+import { MAP_DIFFICULTY_NUMBER_TO_DIFFICULTY } from "../logic/congklakDifficulty";
+
 import "../App.css";
 
 function CongklakBoard(props) {
@@ -90,6 +94,15 @@ function CongklakBoard(props) {
       }
     }
     setTurn(1);
+
+    if (isGameOver(congklakState)) {
+      const result = await axios.post(DASHBOARD_URL, {
+        name: props.name,
+        difficulty: MAP_DIFFICULTY_NUMBER_TO_DIFFICULTY[props.difficulty],
+        score: congklakState[PLAYER1_SCORE_HOLE_NUMBER]
+      });
+      console.log(result);
+    }
   };
 
   if (!props.disabled) {
@@ -127,7 +140,7 @@ function CongklakBoard(props) {
                 fontWeight: "bold"
               }}
             >
-              {turn === 1 ? "Player" : "Congklak.AI"}
+              {turn === 1 ? props.name : "Congklak.AI"}
             </span>
           </h5>
           <div
@@ -241,7 +254,8 @@ function CongklakBoard(props) {
 CongklakBoard.propTypes = {
   difficulty: PropTypes.string.isRequired,
   delay: PropTypes.number.isRequired,
-  disabled: PropTypes.bool.isRequired
+  disabled: PropTypes.bool.isRequired,
+  name: PropTypes.string.isRequired
 };
 
 export default CongklakBoard;
