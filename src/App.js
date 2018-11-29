@@ -31,7 +31,7 @@ export default function App(props) {
   }
 
   function toggleScoreboard() {
-    if (!isHowToShown) {
+    if (!isScoreboardShown) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "scroll";
