@@ -32,86 +32,89 @@ export default function App(props) {
         width="400"
         alt="logo-congklak.ai"
       />
-      {!isGameStarted && (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between"
-          }}
-        >
-          <h5>Choose Delay</h5>
-          <input
-            type="range"
-            min="1"
-            max="500"
-            value={delay}
-            onChange={handleSetDelay}
-          />
-          <h5 style={{ marginTop: "1.5rem" }}>Choose Congklak.AI Difficulty</h5>
-          <form
+      <div className="board">
+        {!isGameStarted && (
+          <div
             style={{
               display: "flex",
               flexDirection: "column",
-              justifyContent: "space-between",
-              alignItems: "flex-start",
-              width: "20rem"
+              justifyContent: "space-between"
             }}
           >
-            <label>
-              <input
-                type="radio"
-                value={DIFFICULTY.EASY}
-                onChange={handleDifficulty}
-                checked={difficulty === DIFFICULTY.EASY}
-              />
-              <span>Easy</span>
-            </label>
-            <label>
-              <input
-                type="radio"
-                value={DIFFICULTY.MEDIUM}
-                onChange={handleDifficulty}
-                checked={difficulty === DIFFICULTY.MEDIUM}
-              />
-              <span>Medium</span>
-            </label>
-            <label>
-              <input
-                type="radio"
-                value={DIFFICULTY.HARD}
-                onChange={handleDifficulty}
-                checked={difficulty === DIFFICULTY.HARD}
-              />
-              <span>Hard</span>
-            </label>
-            <label>
-              <input
-                type="radio"
-                value={DIFFICULTY.BRUTAL}
-                onChange={handleDifficulty}
-                checked={difficulty === DIFFICULTY.BRUTAL}
-              />
-              <span>Brutal</span>
-            </label>
-          </form>
-        </div>
-      )}
+            <h5>Choose Delay</h5>
+            <input
+              type="range"
+              min="1"
+              max="500"
+              value={delay}
+              onChange={handleSetDelay}
+            />
+            <h5 style={{ marginTop: "1.5rem" }}>Choose Difficulty</h5>
+            <form
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+                width: "20rem"
+              }}
+            >
+              <label>
+                <input
+                  type="radio"
+                  value={DIFFICULTY.EASY}
+                  onChange={handleDifficulty}
+                  checked={difficulty === DIFFICULTY.EASY}
+                />
+                <span>Easy</span>
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  value={DIFFICULTY.MEDIUM}
+                  onChange={handleDifficulty}
+                  checked={difficulty === DIFFICULTY.MEDIUM}
+                />
+                <span>Medium</span>
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  value={DIFFICULTY.HARD}
+                  onChange={handleDifficulty}
+                  checked={difficulty === DIFFICULTY.HARD}
+                />
+                <span>Hard</span>
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  value={DIFFICULTY.BRUTAL}
+                  onChange={handleDifficulty}
+                  checked={difficulty === DIFFICULTY.BRUTAL}
+                />
+                <span>Brutal</span>
+              </label>
+            </form>
+          </div>
+        )}
 
-      <div />
+        <CongklakBoard
+          disabled={isGameStarted}
+          delay={Number.parseInt(delay)}
+          difficulty={difficulty}
+        />
+      </div>
 
-      <CongklakBoard
-        disabled={isGameStarted}
-        delay={Number.parseInt(delay)}
-        difficulty={difficulty}
-      />
+      <div className="buttondiv">
+        <button className="btn start-button" onClick={handleClickStartButton}>
+          {isGameStarted ? "Change Config" : "Start Game"}
+        </button>
+      </div>
 
-      <button className="btn start-button" onClick={handleClickStartButton}>
-        {isGameStarted ? "Change Config" : "Start Game"}
-      </button>
       <div className="how-to">
         <div className="ht-clicker" tabIndex="1">
-          <h3>How to Play</h3>
+          <h5>How to Play</h5>
         </div>
         <div className="ht-hiddendiv">
           <ol>

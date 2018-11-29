@@ -5099,7 +5099,7 @@ textarea {
   left: 0;
   position: absolute;
   /* .1s delay is for check animation */
-  transition: border 0.25s, background-color 0.25s, width 0.2s 0.1s, height 0.2s 0.1s, top 0.2s 0.1s, left 0.2s 0.1s;
+  transition: border 0.25s, background-color 0.25s, width 0.2s 0.1s, height 0.2s 0.1s, top 0.2s 0.1s, left 0.2s 0.1s;
   z-index: 1; }
 
 [type="checkbox"].filled-in:not(:checked) + span:not(.lever):before {
@@ -6568,7 +6568,7 @@ input[type="range"]::-ms-thumb {
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: url("https://i.imgur.com/azWhFhd.png");
@@ -6576,7 +6576,7 @@ body {
   background-position: center center; }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace; }
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace; }
 
 @media screen and (min-width: 320px) and (max-width: 545px) and (orientation: landscape) {
   html {
@@ -6600,7 +6600,7 @@ code {
 .App {
   text-align: center;
   width: 100vw;
-  height: 90%;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6611,7 +6611,8 @@ code {
 /*Cara Bermain*/
 .how-to {
   width: 50%;
-  text-align: center; }
+  text-align: center;
+  position: relative; }
   @media only screen and (min-width: 320px) and (max-width: 600px) {
     .how-to {
       width: 80%; } }
@@ -6628,7 +6629,8 @@ code {
   padding: 1em;
   color: black;
   display: none;
-  background-color: #deb887; }
+  background-color: #deb887;
+  position: absolute; }
 
 .ht-hiddendiv > ol {
   padding-left: 20px; }
@@ -6638,13 +6640,18 @@ code {
 
 /**/
 .start-button {
-  margin-top: 5%;
-  font-weight: bold;
-  width: 25%; }
-  @media only screen and (min-width: 320px) and (max-width: 600px) {
-    .start-button {
-      width: 60%;
-      margin-top: 10%; } }
+  font-weight: bold; }
+
+.buttondiv {
+  width: 100%;
+  position: relative;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  display: flex;
+  justify-content: center; }
+
+.board {
+  position: relative; }
 
 .congklak-hole {
   width: 47px;

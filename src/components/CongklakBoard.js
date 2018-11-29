@@ -114,7 +114,7 @@ function CongklakBoard(props) {
 
       {!isGameOver(congklakState) && (
         <React.Fragment>
-          <h3>Current Turn: {turn === 1 ? "Player" : "AI"}</h3>
+          <h4>Current Turn: {turn === 1 ? "Player" : "AI"}</h4>
           {isAiThinking() && (
             <div
               style={{

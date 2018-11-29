@@ -56,7 +56,7 @@ code {
 .App {
   text-align: center;
   width: 100vw;
-  height: 90%;
+  height:auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -69,6 +69,7 @@ code {
 .how-to {
   width: 50%;
   text-align: center;
+  position: relative;
   @media only screen and (min-width: 320px) and (max-width: 600px) {
     width: 80%;
   }
@@ -88,6 +89,7 @@ code {
   color: black;
   display: none;
   background-color: #deb887;
+  position: absolute;
 }
 .ht-hiddendiv > ol {
   padding-left: 20px;
@@ -99,13 +101,20 @@ code {
 /**/
 
 .start-button {
-  margin-top: 5%;
   font-weight: bold;
-  width: 25%;
-  @media only screen and (min-width: 320px) and (max-width: 600px) {
-    width: 60%;
-    margin-top: 10%;
-  }
+}
+
+.buttondiv {
+  width: 100%;
+  position: relative;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  display: flex;
+  justify-content: center;
+}
+
+.board {
+  position: relative;
 }
 
 .congklak-hole {
