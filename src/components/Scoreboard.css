@@ -1,0 +1,68 @@
+.scoreboard-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.scoreboard-modal-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  overflow: hidden !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.scoreboard-card-wrapper {
+  min-width: 60%;
+  max-height: 800px;
+  z-index: 105;
+  overflow: hidden !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-height: 80vh;
+}
+.scoreboard-card-wrapper button {
+  margin-right: 1rem;
+}
+
+.scoreboard-title {
+  font-weight: bold !important;
+}
+
+.scoreboard-button-wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.result-wrapper {
+  width: 90%;
+  height: 80vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-y: auto;
+}
+
+.custom-spinner {
+  justify-content: center;
+}

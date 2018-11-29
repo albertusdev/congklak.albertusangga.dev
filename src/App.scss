@@ -60,14 +60,15 @@ code {
 
 .App {
   text-align: center;
-  width: 100vw;
-  height:auto;
+  width: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  z-index: 0;
 }
 
 .congklak-ai-logo {
@@ -115,12 +116,16 @@ code {
 }
 
 .buttondiv {
-  width: 100%;
   position: relative;
   margin-top: 3%;
   margin-bottom: 3%;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+}
+
+.buttondiv button {
+  margin-top: 1rem;
 }
 
 .board {
@@ -243,4 +248,73 @@ code {
 
 [type="radio"] + span {
   color: black;
+}
+
+.how-to-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.how-to-modal-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100vh;
+  overflow: hidden !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.how-to-card-wrapper {
+  min-width: 60%;
+  max-height: 800px;
+  z-index: 2;
+  overflow: hidden !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-height: 80vh;
+}
+
+.how-to-card-title {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: bold !important;
+}
+
+.scoreboard-button-wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.result-wrapper {
+  width: 90%;
+  height: 80vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-y: auto;
+}
+
+.custom-spinner {
+  justify-content: center;
 }
