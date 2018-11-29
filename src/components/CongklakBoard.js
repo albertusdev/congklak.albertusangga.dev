@@ -5,11 +5,9 @@ import {
   generateCongklakInitialState,
   PLAYER1_SCORE_HOLE_NUMBER,
   PLAYER2_SCORE_HOLE_NUMBER,
-  getNextTurn,
   getPlayer2PlayableHoles,
   getPlayer1PlayableHoles,
   isGameOver,
-  PLAYER2_PLAYABLE_HOLE_NUMBERS,
   isPlayer1OutOfMove,
   isPlayer2OutOfMove,
   getEndOfGameMessage
@@ -33,7 +31,8 @@ function CongklakBoard(props) {
     displayNumberOfSeedsToBeDistributed,
     setDisplayNumberOfSeedsToBeDistributed
   ] = useState(-1);
-  const [isAiThinking, setIsAiThinking] = useState(false);
+
+  const isAiThinking = () => turn === 2 && focusedCongklakHoleNumber === -1;
 
   const handlePlayerClick = (
     selectedHoleNumber,
@@ -61,9 +60,7 @@ function CongklakBoard(props) {
         break;
       }
 
-      setIsAiThinking(true);
       let selectedHoleNumber = await getChoice(nextState, props.difficulty);
-      setIsAiThinking(false);
 
       console.log(`Current State: `, nextState);
       console.log(`AI choose ${selectedHoleNumber}`);
@@ -116,19 +113,87 @@ function CongklakBoard(props) {
       )}
 
       {!isGameOver(congklakState) && (
-        <h3>Current Turn: {turn === 1 ? "Player" : "AI"}</h3>
+        <React.Fragment>
+          <h3>Current Turn: {turn === 1 ? "Player" : "AI"}</h3>
+          {isAiThinking() && (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                marginBottom: "1rem"
+              }}
+            >
+              <span style={{ marginBottom: "0.5rem" }}>
+                Congklak.AI is thinking...
+              </span>
+              <Spinner name="pacman" color="#795548" fadeIn="none" />
+            </div>
+          )}
+        </React.Fragment>
       )}
-
-      {!!isAiThinking && <h1>Ai is thinking...</h1>}
 
       <div
         className="congklak-board"
         style={{ display: "flex", flexDirection: "column" }}
       >
+        {/* Player 2 Holes */}
         <div
           style={{
             display: "flex",
             flexDirection: "row-reverse",
+            justifyContent: "center",
+            flex: 1
+          }}
+        >
+          {getPlayer2PlayableHoles(congklakState).map((value, idx) => (
+            <CongklakHole
+              className="CongklakHole-player2"
+              key={`congklak-hole-${idx + 8}`}
+              focused={focusedCongklakHoleNumber === idx + 8}
+              value={value}
+              disabled
+              onClick={handlePlayerClick(idx + 8)}
+            />
+          ))}
+        </div>
+
+        {/* Player 1 and 2 Score Holes */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flex: 1,
+            margin: "0 -10%"
+          }}
+        >
+          <CongklakHole
+            className="CongklakHole-score2"
+            key={`congklak-hole-8`}
+            focused={focusedCongklakHoleNumber === PLAYER2_SCORE_HOLE_NUMBER}
+            value={congklakState[PLAYER2_SCORE_HOLE_NUMBER]}
+            disabled
+          />
+          {displayNumberOfSeedsToBeDistributed !== -1 && (
+            <div className="inhand-counter">
+              {displayNumberOfSeedsToBeDistributed}
+            </div>
+          )}
+          <CongklakHole
+            className="CongklakHole-score1"
+            key={`congklak-hole-0`}
+            focused={focusedCongklakHoleNumber === PLAYER1_SCORE_HOLE_NUMBER}
+            value={congklakState[PLAYER1_SCORE_HOLE_NUMBER]}
+            disabled
+          />
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
             justifyContent: "center",
             flex: 1
           }}
@@ -145,51 +210,6 @@ function CongklakBoard(props) {
                 value === 0
               }
               onClick={handlePlayerClick(idx)}
-            />
-          ))}
-        </div>
-
-        {/* Player 1 and 2 Score Holes */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            flex: 1,
-            margin: "0 -10%"
-          }}
-        >
-          <CongklakHole
-            className="CongklakHole-score1"
-            key={`congklak-hole-0`}
-            focused={focusedCongklakHoleNumber === PLAYER1_SCORE_HOLE_NUMBER}
-            value={congklakState[PLAYER1_SCORE_HOLE_NUMBER]}
-            disabled
-          />
-          {displayNumberOfSeedsToBeDistributed !== -1 && (
-            <div className="inhand-counter">
-              {displayNumberOfSeedsToBeDistributed}
-            </div>
-          )}
-          <CongklakHole
-            className="CongklakHole-score2"
-            key={`congklak-hole-8`}
-            focused={focusedCongklakHoleNumber === PLAYER2_SCORE_HOLE_NUMBER}
-            value={congklakState[PLAYER2_SCORE_HOLE_NUMBER]}
-            disabled
-          />
-        </div>
-
-        {/* Player 2 Holes */}
-        <div style={{ display: "flex", justifyContent: "center", flex: 1 }}>
-          {getPlayer2PlayableHoles(congklakState).map((value, idx) => (
-            <CongklakHole
-              className="CongklakHole-player2"
-              key={`congklak-hole-${idx + 8}`}
-              focused={focusedCongklakHoleNumber === idx + 8}
-              value={value}
-              disabled
-              onClick={handlePlayerClick(idx + 8)}
             />
           ))}
         </div>

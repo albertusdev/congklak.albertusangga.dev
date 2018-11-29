@@ -52,10 +52,15 @@ async function minimax(state, depthLimit = 8) {
         2,
         holeNumber
       );
-      let actionResult = await getMin(nextState, depthLimit);
-      console.log(`Actions: ${holeNumber}, Score: ${actionResult}`);
-      if (actionResult > maximum) {
-        maximum = actionResult;
+      let currentValue = null;
+      if (nextTurn === 1) {
+        currentValue = await getMin(nextState, depthLimit - 1);
+      } else {
+        currentValue = await getMax(nextState, depthLimit - 1);
+      }
+      console.log(`Actions: ${holeNumber}, Score: ${currentValue}`);
+      if (currentValue > maximum) {
+        maximum = currentValue;
         choice = holeNumber;
       }
     }

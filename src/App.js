@@ -85,6 +85,15 @@ export default function App(props) {
               />
               <span>Hard</span>
             </label>
+            <label>
+              <input
+                type="radio"
+                value={DIFFICULTY.BRUTAL}
+                onChange={handleDifficulty}
+                checked={difficulty === DIFFICULTY.BRUTAL}
+              />
+              <span>Brutal</span>
+            </label>
           </form>
         </div>
       )}
