@@ -75,3 +75,13 @@ export function getEndOfGameMessage(congklakState) {
     return "Congklak.AI wins!";
   }
 }
+
+export function hashCongklakState(congklakState) {
+  const BASE_PRIME = 107;
+  const MOD = 1e9 + 9;
+  let temp = 0;
+  for (let element of congklakState) {
+    temp = (temp * BASE_PRIME + element) % MOD;
+  }
+  return temp;
+}

@@ -3,13 +3,17 @@ import {
   getOwnScoreHoleNumber,
   isPlayer2OutOfMove,
   isPlayer1OutOfMove,
-  PLAYER1_PLAYABLE_HOLE_NUMBERS
+  PLAYER1_PLAYABLE_HOLE_NUMBERS,
+  hashCongklakState
 } from "../logic/congklakLogicUtils";
 import { getCongklakNextState } from "./coreLogic";
 import { DIFFICULTY } from "./congklakDifficulty";
 
 const MINUS_INFINITY = -10000000;
 const PLUS_INFINITY = +10000000;
+
+const CACHE_MIN = new Map();
+const CACHE_MAX = new Map();
 
 export async function getChoice(congklakState, difficulty) {
   if (difficulty === DIFFICULTY.EASY) {
@@ -77,6 +81,11 @@ async function getMin(
   if (depthLimit <= 0 || terminalTest(state, 1)) {
     return utility(state, 2);
   }
+  const hash = hashCongklakState(state);
+  if (CACHE_MIN.has(hash)) {
+    return CACHE_MIN.get(hash);
+  }
+
   let minValue = PLUS_INFINITY;
   for (let holeNumber of PLAYER1_PLAYABLE_HOLE_NUMBERS) {
     if (state[holeNumber] > 0) {
@@ -98,6 +107,9 @@ async function getMin(
       beta = Math.min(beta, minValue);
     }
   }
+
+  CACHE_MIN.set(hash, minValue);
+
   return minValue;
 }
 
@@ -110,6 +122,12 @@ async function getMax(
   if (depthLimit <= 0 || terminalTest(state, 2)) {
     return utility(state, 2);
   }
+
+  const hash = hashCongklakState(state);
+  if (CACHE_MAX.has(hash)) {
+    return CACHE_MAX.get(hash);
+  }
+
   let maxValue = MINUS_INFINITY;
   for (let holeNumber of PLAYER2_PLAYABLE_HOLE_NUMBERS) {
     if (state[holeNumber] > 0) {
@@ -131,5 +149,8 @@ async function getMax(
       alpha = Math.max(alpha, maxValue);
     }
   }
+
+  CACHE_MAX.set(hash, maxValue);
+
   return maxValue;
 }

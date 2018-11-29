@@ -28,6 +28,7 @@ export default function App(props) {
   return (
     <div className="App">
       <img
+        className="congklak-ai-logo"
         src="https://i.imgur.com/dZa4gaQ.png"
         width="400"
         alt="logo-congklak.ai"

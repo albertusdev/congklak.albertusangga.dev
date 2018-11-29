@@ -6578,18 +6578,21 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace; }
 
-@media screen and (min-width: 320px) and (max-width: 545px) and (orientation: landscape) {
+@media screen and (max-width: 545px) and (orientation: landscape) {
   html {
     transform: rotate(-90deg);
     transform-origin: left top;
-    width: 100vh;
     overflow-x: hidden;
     position: absolute;
     top: 100%;
     left: 0; } }
 
+@media screen and (max-width: 545px) {
+  html {
+    font-size: 8px; } }
+
 #root {
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   font-size: 16px;
   display: flex;
@@ -6607,6 +6610,10 @@ code {
   justify-content: center;
   margin-top: 1rem;
   margin-bottom: 1rem; }
+
+.congklak-ai-logo {
+  max-width: 25%;
+  width: auto; }
 
 /*Cara Bermain*/
 .how-to {
@@ -6714,10 +6721,10 @@ code {
   box-shadow: 10px 10px #351a00;
   border: 1px solid #351a00;
   padding: 10px 50px;
-  border-top-left-radius: 200px 100%;
-  border-bottom-left-radius: 200px 100%;
-  border-top-right-radius: 200px 100%;
-  border-bottom-right-radius: 200px 100%; }
+  border-top-left-radius: 50% 100%;
+  border-bottom-left-radius: 50% 100%;
+  border-top-right-radius: 50% 100%;
+  border-bottom-right-radius: 50% 100%; }
   @media only screen and (min-width: 320px) and (max-width: 600px) {
     .congklak-board {
       padding: 10px 30px;

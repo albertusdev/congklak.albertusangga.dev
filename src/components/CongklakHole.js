@@ -12,6 +12,9 @@ function CongklakHole(props) {
       }
       disabled={props.disabled}
       onClick={props.onClick}
+      style={{
+        transition: `${props.delay / 1000}s`
+      }}
     >
       {props.value}
     </button>
@@ -23,13 +26,15 @@ CongklakHole.propTypes = {
   value: PropTypes.number.isRequired,
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
-  focused: PropTypes.bool
+  focused: PropTypes.bool,
+  delay: PropTypes.number.isRequired
 };
 
 CongklakHole.defaultProps = {
   className: "",
   disabled: false,
-  focused: false
+  focused: false,
+  delay: 0
 };
 
 export default CongklakHole;

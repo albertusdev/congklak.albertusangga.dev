@@ -32,7 +32,11 @@ function CongklakBoard(props) {
     setDisplayNumberOfSeedsToBeDistributed
   ] = useState(-1);
 
-  const isAiThinking = () => turn === 2 && focusedCongklakHoleNumber === -1;
+  const isAiThinking = () =>
+    turn === 2 &&
+    (focusedCongklakHoleNumber === -1 ||
+      displayNumberOfSeedsToBeDistributed === -1);
+  // const isAiThinking = () => true;
 
   const handlePlayerClick = (
     selectedHoleNumber,
@@ -114,23 +118,35 @@ function CongklakBoard(props) {
 
       {!isGameOver(congklakState) && (
         <React.Fragment>
-          <h4>Current Turn: {turn === 1 ? "Player" : "AI"}</h4>
-          {isAiThinking() && (
-            <div
+          <h5 style={{ margin: "0.25rem 0", display: "flex" }}>
+            <span>Current Turn:</span>
+            <span
               style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                marginBottom: "1rem"
+                marginLeft: "1rem",
+                color: "#795548",
+                fontWeight: "bold"
               }}
             >
-              <span style={{ marginBottom: "0.5rem" }}>
-                Congklak.AI is thinking...
-              </span>
-              <Spinner name="pacman" color="#795548" fadeIn="none" />
-            </div>
-          )}
+              {turn === 1 ? "Player" : "Congklak.AI"}
+            </span>
+          </h5>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              marginTop: "0.5rem",
+              marginBottom: "0.5rem",
+              transition: "0.5s",
+              visibility: isAiThinking() ? "visible" : "hidden"
+            }}
+          >
+            <span style={{ marginBottom: "0.5rem" }}>
+              Congklak.AI is thinking...
+            </span>
+            <Spinner name="pacman" color="#795548" fadeIn="none" />
+          </div>
         </React.Fragment>
       )}
 
@@ -155,6 +171,7 @@ function CongklakBoard(props) {
               value={value}
               disabled
               onClick={handlePlayerClick(idx + 8)}
+              delay={props.delay}
             />
           ))}
         </div>
@@ -175,6 +192,7 @@ function CongklakBoard(props) {
             focused={focusedCongklakHoleNumber === PLAYER2_SCORE_HOLE_NUMBER}
             value={congklakState[PLAYER2_SCORE_HOLE_NUMBER]}
             disabled
+            delay={props.delay}
           />
           {displayNumberOfSeedsToBeDistributed !== -1 && (
             <div className="inhand-counter">
@@ -187,6 +205,7 @@ function CongklakBoard(props) {
             focused={focusedCongklakHoleNumber === PLAYER1_SCORE_HOLE_NUMBER}
             value={congklakState[PLAYER1_SCORE_HOLE_NUMBER]}
             disabled
+            delay={props.delay}
           />
         </div>
 
@@ -210,6 +229,7 @@ function CongklakBoard(props) {
                 value === 0
               }
               onClick={handlePlayerClick(idx)}
+              delay={props.delay}
             />
           ))}
         </div>
