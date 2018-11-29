@@ -1,2 +1,2 @@
 export const DASHBOARD_URL =
-  "https://backend-congklak.herokuapp.com/dashboards/";
+  "https://backend-congklak.herokuapp.com/dashboards";

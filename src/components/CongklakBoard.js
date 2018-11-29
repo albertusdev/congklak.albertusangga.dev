@@ -96,7 +96,7 @@ function CongklakBoard(props) {
     setTurn(1);
 
     if (isGameOver(congklakState)) {
-      const result = await axios.post(DASHBOARD_URL, {
+      const result = await axios.post(DASHBOARD_URL + "/", {
         name: props.name,
         difficulty: MAP_DIFFICULTY_NUMBER_TO_DIFFICULTY[props.difficulty],
         score: congklakState[PLAYER1_SCORE_HOLE_NUMBER]
