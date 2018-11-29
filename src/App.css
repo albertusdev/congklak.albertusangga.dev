@@ -5206,7 +5206,8 @@ textarea {
     border-radius: 50%;
     left: 0;
     top: -3px;
-    transition: left 0.3s ease, background 0.3s ease, box-shadow 0.1s ease, transform 0.1s ease; }
+    transition: left 0.3s ease, background 0.3s ease, box-shadow 0.1s ease,
+ transform 0.1s ease; }
   .switch label .lever:before {
     background-color: rgba(121, 85, 72, 0.15); }
   .switch label .lever:after {
@@ -6598,7 +6599,9 @@ code {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+  position: relative;
+}
 
 .App {
   text-align: center;
@@ -6757,7 +6760,6 @@ code {
   left: 0;
   width: 100%;
   height: 100vh;
-  overflow: hidden !important;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6770,8 +6772,7 @@ code {
   left: 0;
   background-color: rgba(0, 0, 0, 0.6);
   width: 100%;
-  height: 100vh;
-  overflow: hidden !important;
+  height: 200%;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -39,8 +39,8 @@ export default class ScoreboardList extends React.Component {
     return (
       <div className="scoreboard-wrapper">
         <div className="scoreboard-modal-wrapper" onClick={this.props.toggle} />
-        <div className="card scoreboard-card-wrapper">
-          <div className="card-content">
+        <div className="card scoreboard-card" style={{ zIndex: 105 }}>
+          <div className="scoreboard-card-wrapper">
             <span className="card-title scoreboard-title">Scoreboard</span>
             <div className="scoreboard-button-wrapper">
               <button

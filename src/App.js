@@ -31,10 +31,20 @@ export default function App(props) {
   }
 
   function toggleScoreboard() {
+    if (!isHowToShown) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
     setIsScoreboardShown(!isScoreboardShown);
   }
 
   function toggleHowTo() {
+    if (!isHowToShown) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
     setIsHowToShown(!isHowToShown);
   }
 

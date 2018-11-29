@@ -4,7 +4,6 @@
   left: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden !important;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,16 +25,18 @@
   z-index: 100;
 }
 
-.scoreboard-card-wrapper {
+.scoreboard-card {
   min-width: 60%;
-  max-height: 800px;
+  max-width: 800px;
+}
+
+.scoreboard-card-wrapper {
+  max-height: 80vh;
   z-index: 105;
-  overflow: hidden !important;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
 }
 .scoreboard-card-wrapper button {
   margin-right: 1rem;
