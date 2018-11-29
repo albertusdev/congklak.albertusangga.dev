@@ -76,12 +76,10 @@ export function getEndOfGameMessage(congklakState) {
   }
 }
 
-export function hashCongklakState(congklakState) {
-  const BASE_PRIME = 107;
-  const MOD = 1e9 + 9;
-  let temp = 0;
+export function hashCongklakState(depthLimit, congklakState) {
+  let str = `${depthLimit},`;
   for (let element of congklakState) {
-    temp = (temp * BASE_PRIME + element) % MOD;
+    str = str + " " + element;
   }
-  return temp;
+  return str;
 }
