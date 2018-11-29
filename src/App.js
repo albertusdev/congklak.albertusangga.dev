@@ -34,7 +34,7 @@ export default function App(props) {
     if (!isHowToShown) {
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = "scroll";
     }
     setIsScoreboardShown(!isScoreboardShown);
   }
@@ -43,7 +43,7 @@ export default function App(props) {
     if (!isHowToShown) {
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = "scroll";
     }
     setIsHowToShown(!isHowToShown);
   }
