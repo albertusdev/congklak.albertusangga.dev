@@ -111,46 +111,43 @@ export default function App(props) {
       </button>
       <div className="how-to">
         <div className="ht-clicker" tabIndex="1">
-          <h3>Cara Bermain</h3>
+          <h3>How to Play</h3>
         </div>
         <div className="ht-hiddendiv">
           <ol>
             <li>
-              Pemain memilih satu lubang pada sisi milik pemain, yaitu sisi
-              bawah. Tidak ada batasan waktu untuk ​pemain ​pada setiap ​giliran
-              ​untuk memilih lubang.
+              Player chooses one of the seven holes on their side, which is
+              bottom side. There is no time limit for player on each turn to
+              choose the hole.
             </li>
             <li>
-              Secara otomatis biji pada lubang tersebut akan dimasukkan
-              satu-persatu ke setiap lubang kecil dan lubang besar di sisi kanan
-              papan dengan pergerakan berlawanan arah jarum jam.
+              Automatically the seeds in the hole will be inserted one by one
+              into each small hole and large hole on the right side of the board
+              with a counter-clockwise movement.
             </li>
             <li>
-              Jika biji terakhir jatuh pada lubang di sisi milik pemain (sisi
-              bawah) dan lubang tersebut tidak kosong, maka secara otomatis
-              semua biji yang ada di lubang tersebut diambil dan selanjutnya
-              permainan akan mengulangi langkah (2).
+              If the last seed drops in the hole on the player's side (bottom
+              side) and the hole is not empty, then all the seeds in the hole
+              are automatically taken and the game will repeat step (2).
             </li>
             <li>
-              Jika biji terakhir jatuh pada lubang di sisi pemain (sisi bawah)
-              dan lubang tersebut kosong, maka secara otomatis semua biji yang
-              ada pada lubang di seberangnya (sisi lawan) akan dimasukkan ke
-              lubang besar milik pemain (sisi kanan). Kemudian giliran pemain
-              telah selesai dan selanjutnya adalah giliran dari bot.
+              If the last seed drops in the hole on the player's side (bottom
+              side) and the hole is empty, then automatically all seeds in the
+              opposite hole (opponent's side) will be inserted into the player's
+              large hole (right side). Then the player's turn has finished and
+              then it is the turn of the bot.
             </li>
             <li>
-              Jika biji terakhir masuk pada lubang besar milik pemain (sisi
-              kanan), maka pemain dapat melanjutkan permainan dengan mengulangi
-              langkah (1).
+              If the last seed enters the player's large hole (right side), the
+              player can continue the game by repeating step (1).
             </li>
             <li>
-              Jika biji terakhir masuk pada sisi milik lawan (sisi atas), maka
-              giliran pemain telah selesai dan selanjutnya adalah giliran dari
-              bot.
+              If the last seed enters the opponent's side (upper side), then the
+              player's turn has finished and then it is the turn of the bot.
             </li>
             <li>
-              Pemenang permainan adalah yang memiliki biji paling banyak pada
-              lubang besar miliknya.
+              The game ends when there is no longer any seeds in small holes.
+              The player who manages to collect the most seeds is the winner.
             </li>
           </ol>
         </div>
