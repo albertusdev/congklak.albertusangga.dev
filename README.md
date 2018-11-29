@@ -1,6 +1,8 @@
-# Congklak.AI
+# [Congklak.AI](https://congklak.albertusangga.xyz)
 
 An intelligent agent that can play Congklak using minimax with alpha-beta pruning algorithm.
+
+## Demo Website at: [Link](https://congklak.albertusangga.xyz)
 
 ## Getting Started (Installation)
 
