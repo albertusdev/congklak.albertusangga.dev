@@ -6579,15 +6579,6 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace; }
 
-@media screen and (max-width: 545px) and (orientation: landscape) {
-  html {
-    transform: rotate(-90deg);
-    transform-origin: left top;
-    overflow-x: hidden;
-    position: absolute;
-    top: 100%;
-    left: 0; } }
-
 @media screen and (max-width: 545px) {
   html {
     font-size: 8px; } }
